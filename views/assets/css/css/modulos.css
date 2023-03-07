@@ -1,0 +1,632 @@
+/* ---------------------------------------
+------------------------------------------
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                                          
+                                          
+                                        
+                                       /$$
+                                      | $$
+  /$$$$$$           /$$$$$$$  /$$$$$$ | $$
+ /$$__  $$ /$$$$$$ /$$_____/ /$$__  $$| $$
+| $$$$$$$$|______/|  $$$$$$ | $$  \ $$| $$
+| $$_____/         \____  $$| $$  | $$| $$
+|  $$$$$$$         /$$$$$$$/|  $$$$$$/| $$
+ \_______/        |_______/  \______/ |__/
+                                          
+                                          
+                                           
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@ ---> modulos
+............. login
+............. seleccionar sucursal
+............. checador
+............. error 404
+............. en mantenimiento
+............. punto de venta
+............. ticket
+............. formato
+------------------------------------------
+--------------------------------------- */
+
+/* ---------------------------------------
+@@@@ modulos ---> login  
+--------------------------------------- */
+.login {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+.login .formulario {
+    display: block;
+    max-width: 550px;
+    margin: 0 auto;
+}
+.login .formulario .logo {
+    display: block;
+    width: 200px;
+    margin: 0 auto 35px;
+}
+.login .form-group {
+    margin: 18px 0;
+}
+.login .input-group-prepend {
+    margin-right: -2px;
+}
+.login .form-control {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-gris);
+    height: calc(2.5rem + .75rem + 2px);
+    border-left: 0;
+    border-top: 2px solid var(--color-gris-claro);
+    border-bottom: 2px solid var(--color-gris-claro);
+    border-right: 2px solid var(--color-gris-claro);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.login .input-group-text {
+    background-color: var(--color-blanco);
+    border-right: 0;
+    border-top: 2px solid var(--color-gris-claro);
+    border-bottom: 2px solid var(--color-gris-claro);
+    border-left: 2px solid var(--color-gris-claro);
+    border-right: 2px solid var(--color-gris-claro);
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.login .btn {
+    display: block;
+    font-weight: bold;
+    color: var(--color-blanco);
+    text-align: center;
+    background-color: var(--color-azul);
+    border-color: var(--color-azul);
+    padding: 1rem 2.75rem;
+}
+.login .input-group img {
+    width: 1rem;
+}
+.login .form-control::-webkit-input-placeholder {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-gris);
+    opacity: 1!important;
+    text-transform: capitalize;
+}
+.login .form-control:-moz-placeholder {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-gris);
+    opacity: 1!important;
+    text-transform: capitalize;
+}
+.login .form-control::-moz-placeholder {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-gris);
+    opacity: 1!important;
+    text-transform: capitalize;
+}
+.login .form-control:-ms-input-placeholder {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-gris);
+    opacity: 1!important;
+    text-transform: capitalize;
+}
+.login .form-control::-ms-input-placeholder {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-gris);
+    opacity: 1!important;
+    text-transform: capitalize;
+}
+.login .form-control::placeholder {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-gris);
+    opacity: 1!important;
+    text-transform: capitalize;
+}
+
+/* ---------------------------------------
+@@@@ modulos ---> seleccionar sucursal
+--------------------------------------- */
+.modulo-rh_seleccionar_sucursal {
+    padding: 0!Important;
+}
+.modulo-rh_seleccionar_sucursal .header {
+    background-color: var(--principal);
+    padding: 35px 15px;
+    color: var(--color-blanco);
+    border-radius: 24px;
+    margin-bottom: 30px;
+}
+.modulo-rh_seleccionar_sucursal .header .titulo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.modulo-rh_seleccionar_sucursal .caja .caja a {
+    text-decoration: none;
+}
+.modulo-rh_seleccionar_sucursal .caja .caja img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.modulo-rh_seleccionar_sucursal .caja .caja h6 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 15px auto;
+}
+.modulo-rh_seleccionar_sucursal .caja .caja p {
+    color: var(--color-negro);
+}
+.modulo-rh_seleccionar_sucursal .caja .caja p span {
+    display: table;
+    font-size: 1rem;
+    padding: 12px 25px;
+    margin: 0 auto;
+}
+/* ---------------------------------------
+@@@@ modulos ---> checador
+--------------------------------------- */
+.modulo-rh_checador {
+
+}
+.modulo-rh_checador .form-control {
+    border-color: var(--color-gris);
+}
+.modulo-rh_checador .caja-camara {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.modulo-rh_checador #realizarCapturaChecador {
+    display: block;
+    background-color: var(--principal);
+    padding: 12px 24px;
+    color: var(--color-blanco);
+    border-radius: 12px;
+    max-width: 250px;
+    margin: 25px auto 0;
+}
+.modulo-rh_checador .btn-aceptar {
+    width: 100%;
+    max-width: 300px;
+}
+.modulo-rh_checador .row-logo img {
+    max-width: 150px;
+    width: 100%;
+}
+/* ---------------------------------------
+@@@@ modulos ---> error 404  
+--------------------------------------- */
+.seccion__error404 {
+    height: 100vh;
+    text-align: center;
+}
+.seccion__error404 .titulo {
+    font-size: 6.5rem;
+    font-weight: 800;
+    color: var(--principal);
+    line-height: 1;
+    margin-bottom: 0px;
+}
+.seccion__error404 p {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    line-height: 1;
+    margin: 0;
+}
+/* ---------------------------------------
+@@@@ modulos ---> en mantenimiento  
+--------------------------------------- */
+.seccion__mantenimiento {
+    height: 100vh;
+    text-align: center;
+    background-color: var(--principal);
+}
+.seccion__mantenimiento .titulo {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-blanco);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.seccion__mantenimiento p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-gris-claro);
+    line-height: 1;
+    margin: 0;
+}
+
+/* ---------------------------------------
+@@@@ modulos ---> punto de venta  
+--------------------------------------- */
+.modulo-puntodeventa {
+    position: relative;
+    padding: 0!important;
+    background-color: var(--color-blanco);
+}
+.modulo-puntodeventa .grid {
+    display: grid;
+    /*
+    grid-template-columns: 0.1fr 2fr 0.9fr;
+    grid-template-areas: "puntoventa__buscador puntoventa__contenido puntoventa__carrito";
+    */
+    grid-template-columns: 1.6fr 0.4fr;
+    grid-template-rows: 1fr;
+    grid-auto-columns: 1fr;
+    gap: 0em 15px;
+    grid-auto-flow: row;
+    grid-template-areas: "puntoventa__contenido puntoventa__carrito";
+    width: 100%;
+    height: 100vh;
+}
+.puntoventa__contenido {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 1.9fr;
+    gap: 15px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: "contenido__nav"
+    "contenido__productos";
+    grid-area: puntoventa__contenido;
+    overflow-y: hidden;
+    height: 100%;
+}
+.contenido__nav { 
+    grid-area: contenido__nav; 
+    color: var(--color-blanco);
+    font-weight: bold;
+    text-align: center;
+    background-color: var(--principal);
+}
+.contenido__nav .row {
+    margin: 0;
+}
+.contenido__nav .btn {
+    padding: .35rem 1rem;
+    font-size: .9rem;
+}
+.contenido__productos { 
+    grid-area: contenido__productos;
+    overflow-y: scroll;
+    height: 100%;
+}
+.contenido__productos .row {
+    margin: 0 8px;
+}
+.contenido__productos .col-md-3 {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.card-producto {
+    cursor: pointer;
+    text-align: center;
+    border-radius: 0;
+}
+.puntoventa__carrito {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 1.9fr;
+    gap: 0 0px;
+    grid-auto-flow: row;
+    grid-template-areas: "carrito__tabs"
+    "carrito__contenido";
+    grid-area: puntoventa__carrito;
+    padding: 0;
+    height: 100%;
+    overflow-y: hidden;
+}
+.carrito__tabs { 
+    grid-area: carrito__tabs; 
+    background-color: var(--principal);
+}
+.carrito__tabs h6 {
+    color: var(--color-blanco);
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+.carrito__contenido {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.5fr 0.5fr;
+    gap: 0px 0px;
+    grid-template-areas: "carrito__listado" "carrito__pago";
+    grid-area: carrito__contenido;
+    height: calc(100vh - 40px);
+}
+.carrito__listado { 
+    grid-area: carrito__listado; 
+    overflow-y: scroll;
+    height: 100%;
+    padding: 15px 15px 15px 0;
+    background-color: var(--bg-principal-claro);
+}
+.carrito__pago {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.5fr 0.5fr;
+    gap: 0px 0px;
+    grid-template-areas: "pago__resumen" "pago__botones";
+    grid-area: carrito__pago; 
+}
+.pago__resumen {
+    grid-area: pago__resumen;
+    background-color: var(--principal);
+}
+.pago__resumen .table tr > td:last-child, .pago__resumen .table tr > th:last-child, .pago__resumen .table tr > td:first-child, .pago__resumen .table tr > th:first-child {
+    border-radius: 0;
+}
+.pago__resumen .table tbody th, .pago__resumen .table tbody td {
+    color: var(--color-blanco);
+    padding: 1rem 1rem;
+    background-color: transparent;
+}
+.pago__resumen .table .text-right {
+    font-weight: bold;
+}
+.pago__botones {
+    grid-area: pago__botones;
+}
+.pago__botones .div--botones {
+    
+}
+.pago__botones .btn {
+    font-size: 1rem;
+    border-radius: 0;
+    width: 100%;
+    color: var(--color-blanco)!important;
+    border-color: var(--color-azul);
+    background-color: var(--color-azul);
+}
+.pago__botones .btn.btn--cancelar {
+    color: var(--color-blanco)!important;
+    border-color: var(--color-rojo);
+    background-color: var(--color-rojo);
+}
+.pago__botones .btn.btn--pagar {
+    color: var(--color-blanco)!important;
+    border-color: var(--color-verde);
+    background-color: var(--color-verde);
+}
+.modulo-puntodeventa .card-img-top {
+    border-radius: 0;
+    object-fit: cover;
+}
+.modulo-puntodeventa .card-body {
+    padding: 1.25rem .25rem;
+}
+.carrito__listado .carrito__producto .card-img-top {
+    width: 100%;
+    height: 100%;
+}
+.carrito__listado .carrito__producto {
+    padding: 0 0 0;
+    margin-bottom: 20px;
+    background-color: var(--color-blanco);
+    border-bottom: 1px solid var(--bg-principal-claro);
+}
+.carrito__producto p {
+    font-size: .8rem;
+    margin-bottom: 3px;
+}
+/* ### - [carrito__listado] carrito__producto ---> .btn   - @@@@ */
+.btn__masmenos .btn {
+    padding: 0;
+    height: 24px;
+    width: 100%;
+    border-radius: 0;
+    border: 0;
+    background-size: 12px auto;
+    background-color: var(--color-negro);
+}
+.btn__masmenos .btn-menos:hover, .btn__masmenos .btn-menos:focus, .btn__masmenos .btn-menos:active,
+.btn__masmenos .btn-mas:hover, .btn__masmenos .btn-mas:focus, .btn__masmenos .btn-mas:active {
+    background-color: var(--color-negro);
+}
+.btn__masmenos .form-control {
+    text-align: center;
+    width: 100%;
+    height: 24px;
+    padding: 3px;
+    border-radius: 0;
+    border: 1px solid var(--color-negro);
+}
+.carrito__producto .btn.btn-icono {
+    width: 20px!important;
+    height: 100%;
+    padding: 0px!important;
+    border-radius: 0px;
+    background-size: auto 1rem;
+}
+
+/* ---------------------------------------
+@@@@ modulos ---> ticket  
+--------------------------------------- */
+.seccion__ticket {
+    max-width: 8cm;
+    padding: 10px;
+    margin: 0 auto;
+    font-family: 'Inconsolata', monospace;
+    background-color: var(--color-blanco);
+}
+.seccion__ticket .img-thumbnail {
+    display: block;
+    border: 0;
+    padding: 0;
+    margin: 45px auto 25px;
+}
+.seccion__ticket h4 {
+    font-weight: bold;
+    text-align: center;
+}
+.seccion__ticket .table tbody tr:last-child td {
+    border-bottom: 1px solid var(--color-negro);
+}
+.seccion__ticket .table thead th,
+.seccion__ticket .table thead td {
+    border-color: var(--principal)!important;
+    background-color: var(--principal)!important;
+}
+.seccion__ticket .table tfoot th,
+.seccion__ticket .table tfoot td,
+.seccion__ticket .table tbody th,
+.seccion__ticket .table tbody td,
+.seccion__ticket .table thead th,
+.seccion__ticket .table thead td {
+    font-size: .85rem;
+    padding: .85rem 0.35rem!important;
+    border-radius: 0!important;
+}
+.seccion__ticket .table tbody tr td, 
+.seccion__ticket .table tbody tr th, 
+.seccion__ticket .table tbody tr:nth-of-type(even) td, 
+.seccion__ticket .table tbody tr:nth-of-type(even) th {
+   background-color: transparent;
+    border-radius: 0!important;
+}
+.seccion__ticket .btn {
+    font-family: 'Roboto';
+}
+
+/* ---------------------------------------
+@@@@ modulos ---> formato  
+--------------------------------------- */
+.seccion__formato .table thead th {
+}
+.seccion__formato .table tbody td {
+    border-radius: 0!important;
+    border-bottom: 1px solid var(--color-gris);
+}
+.seccion__formato .table tfoot th {
+    color: var(--principal);
+    background-color: transparent;
+}
+.seccion__formato .estilo--campo {
+    padding: 12px;
+    border-radius: 12px;
+    background-color: rgba(159, 170, 190, 0.05);
+}
+
+/* ---------------------------------------
+@@@@ modulos ---> faq  
+--------------------------------------- */
+.seccion__faq .jumbotron {
+    background-color: var(--principal);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.seccion__faq .jumbotron form {
+    max-width: 661px;
+    margin: 0 auto;
+}
+.seccion__faq .caja.mt-0 {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 2rem;
+}
+
+/* ---------------------------------------
+@@@@ media-queries
+--------------------------------------- */
+@media (min-width: 1367px) {
+    /* ---------------------------------------
+    @@@@ punto de venta
+    --------------------------------------- */
+    .carrito__producto p {
+        font-size: 1rem;
+    }
+    .pago__resumen .table tbody th, .pago__resumen .table tbody td {
+        font-size: 1rem;
+    }
+    .carrito__producto .btn.btn-icono {
+        width: 100%!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .modulo-rh_checador {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+        height: 100%;
+    }
+}
+@media (max-width: 767px) {
+    /* ---------------------------------------
+    @@@@ en mantenimiento
+    --------------------------------------- */
+    .seccion__mantenimiento .titulo {
+        font-size: 2.5rem;
+    }
+    .seccion__mantenimiento p {
+        font-size: 1.25rem;
+        line-height: 1.5;
+    }
+
+    .modulo-rh_checador .row-logo img {
+        max-width: 150px;
+        width: 100%;
+    }
+    .modulo-rh_checador #imagenChecador {
+        max-width: 120px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .modulo-rh_checador .caja-camara #imagenCamaraChecador,
+    .modulo-rh_checador .caja-camara video,
+    .modulo-rh_checador .caja-camara .col-md-6 {
+        width: 100%!important;
+    }
+}
+@media print {
+    /* ---------------------------------------
+    @@@@ ticket
+    --------------------------------------- */
+    .seccion__ticket {
+        max-width: 100%;
+        padding: 0;
+    }
+    .seccion__ticket * {
+        font-size: 8pt;
+    }
+    .seccion__ticket h4 {
+        font-size: 10pt;
+    }
+    .seccion__ticket .row {
+        margin: 0;
+    }
+    .seccion__ticket .table tfoot th, .seccion__ticket .table tfoot td, .seccion__ticket .table thead th, .seccion__ticket .table thead td {
+        background-color: var(--color-negro)!important;
+        border-color: var(--color-negro)!important;
+        border-radius: 0!important;
+    }
+    .seccion__ticket .table tfoot th, .seccion__ticket .table tfoot td, .seccion__ticket .table thead th, .seccion__ticket .table thead td {
+        font-size: 8pt;
+        padding: .85rem 0.35rem;
+    }
+    .seccion__ticket .table tbody th, .seccion__ticket .table tbody td {
+        font-size: 8pt;
+        color: var(--color-negro);
+        padding: .65rem 0.35rem;
+    }
+}
