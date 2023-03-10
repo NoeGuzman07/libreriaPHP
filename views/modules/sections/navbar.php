@@ -1,3 +1,11 @@
+
+<?php
+
+//Consulta de datos
+$usuarios = UsuariosController::ControllerConsultaUsuarios(null, null);
+
+?>
+
 <!-- Navbar -->
 <nav class="navbar">
     <a class="navbar-brand" href="<?php echo $url; ?>"><img src="<?php echo $url; ?>views/assets/css/img/logo/logo.png"></a>

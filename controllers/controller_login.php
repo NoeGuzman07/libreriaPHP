@@ -10,7 +10,7 @@ class LoginController{
 
 		$respuesta = LoginModel::ingresoModel($datosController["correo_electronico"]);
 
-		if($respuesta){
+		if($respuesta) {
 			
 			//usuario correcto
 
@@ -18,11 +18,12 @@ class LoginController{
 				
 				//usuario y contraseña validos
 
-				if($respuesta['estado'] == 0){
+				if($respuesta['estado'] == 0) {
 					
 					//usuario activo
 
 					//variables de sesión
+
 					session_start();
 					$_SESSION['iniciarSesion'] = "ok";
 					$_SESSION['id_usuario'] = $respuesta['id_usuario'];
@@ -33,18 +34,21 @@ class LoginController{
 						echo 'dashboard';
 
 				}else{
+
 					//usuario desactivado
 
 					echo 'desactivado';
 				}
 
 			}else{
+
 				//usuario o contraseña invalidos
 
 				echo 'invalido';
 			}
 
 		}else{
+
 			//usuario incorrecto
 
 			echo 'invalido';

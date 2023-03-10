@@ -2,9 +2,16 @@
 
 require_once "conexion.php";
 
-class LoginModel extends Conexion{
+class LoginModel extends Conexion {
 
 	/* INGRESO */
+
+    
+
+    /* End of INGRESO */
+    
+    
+    /* INGRESO */
 	
 	static public function ingresoModel($datosModel){
 
@@ -13,10 +20,10 @@ class LoginModel extends Conexion{
         $stmt->bindParam(":correo_electronico", $datosModel, PDO::PARAM_STR);
 
         $stmt->execute();
-       
-        //$stmt->close();
 
         return $stmt->fetch();
+       
+        //$stmt->close();
 
         //$stmt = null;
 

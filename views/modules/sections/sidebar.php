@@ -5,7 +5,7 @@
 
         <!-- Dashboard -->
         <li class="nav-item">
-            <a class="nav-link activo" href="<?php echo $url; ?>dashboard"><span class="material-icons"> grid_view </span><span>Dashboard</span></a>
+            <a class="nav-link activo" href="<?php echo $url; ?>dashboard"><span class="material-icons"> grid_view </span><span>Inicio</span></a>
         </li>
         <!-- Dashboard -->
 

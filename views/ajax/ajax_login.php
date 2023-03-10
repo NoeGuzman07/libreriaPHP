@@ -3,7 +3,7 @@
 require_once "../../controllers/controller_login.php";
 require_once "../../models/model_login.php";
 
-class Login{
+class Login {
 
 	public $datosLogin;
 	public $controllerLogin;

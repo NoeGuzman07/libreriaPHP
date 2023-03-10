@@ -90,6 +90,7 @@ $v = "1";
         if (isset($action[0])) {
 
             if ($_SESSION['nivel'] == 'Administrador') {
+                
                 //Administrador
 
                 if (

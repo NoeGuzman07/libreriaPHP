@@ -4,7 +4,36 @@ require_once "conexion.php";
 
 class UsuariosModel extends Conexion {
 
-	static public function modelConsultaUsuarios($tabla, $item, $valor){
+	//Modelo Registro de usuarios
+	static public function modelRegistroUsuarios($tabla, $datos) {
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre_completo, correo_electronico, contrasena, confirmar_contrasena, fecha_nacimiento, nivel, imagen) VALUES (:nombre_completo, :correo_electronico, :contrasena, :confirmar_contrasena, :fecha_nacimiento, :nivel, :imagen)");
+
+		$stmt->bindParam(":nombre_completo", $datos["datos"], PDO::PARAM_STR);
+		$stmt->bindParam(":correo_electronico", $datos["datos"], PDO::PARAM_STR);
+		$stmt->bindParam(":contrasena", $datos["datos"], PDO::PARAM_STR);
+		$stmt->bindParam(":confirmar_contrasena", $datos["datos"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_nacimiento", $datos["datos"], PDO::PARAM_STR);
+		$stmt->bindParam(":nivel", $datos["datos"], PDO::PARAM_STR);
+		$stmt->bindParam(":imagen", $datos["datos"], PDO::PARAM_STR);
+
+		if ($stmt->execute()) {
+
+            return "ok";
+        
+		} else {
+        
+			print_r(Conexion::conectar()->errorInfo());
+        
+		}
+
+		//$stmt->close();
+		//$stmt = null;	
+
+	}
+	
+	//Modelo Consulta de datos
+	static public function modelConsultaUsuarios($tabla, $item, $valor) {
 
 		if($item == null && $valor == null){
 

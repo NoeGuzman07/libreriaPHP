@@ -13,7 +13,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Usuario</span>
                                 </div>
-                                <input class="form-control" id="correoElectronicoIngreso" name="" placeholder="Usuario" type="text" required>
+                                <input class="form-control" id="correoElectronicoIngreso" name="" placeholder="Correo Electronico" type="text" required>
                             </div>
                         </div>
 
