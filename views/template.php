@@ -146,6 +146,7 @@ $v = "1";
     <!-- Custom scripts -->
     <script src="<?php echo $url; ?>views/assets/js/scripts/general.js?v='<?php echo $v; ?>'"></script>
     <script src="<?php echo $url; ?>views/assets/js/scripts/login.js?v='<?php echo $v; ?>'"></script>
+    <script src="<?php echo $url; ?>views/assets/js/scripts/usuarios.js?v='<?php echo $v; ?>'"></script>
 </body>
 
 </html>

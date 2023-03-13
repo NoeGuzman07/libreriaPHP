@@ -41,42 +41,42 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="nombre_completo" class="col-form-label">Nombre completo:</label>
-								<input type="text" class="form-control" id="registroNombreCompleto" name="nombre_completo" required>
+								<input type="text" class="form-control" id="registroNombreCompleto" name="" required>
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="correo_electronico" class="col-form-label">Correo Electronico:</label>
-								<input type="email" class="form-control" id="registroCorreoElectronico" name="correo_electronico" required><br>
+								<input type="email" class="form-control" id="registroCorreoElectronico" name="" required><br>
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="contrasena" class="col-form-label">Contrasena:</label>
-								<input type="password" class="form-control" id="registroContrasena" name="contrasena" required><br>
+								<input type="password" class="form-control" id="registroContrasena" name="" required><br>
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="confirmar_contrasena" class="col-form-label">Confirmar Contrasena:</label>
-								<input type="password" class="form-control" id="registroConfirmarContrasena" name="confirmar_contrasena" required><br>
+								<input type="password" class="form-control" id="registroConfirmarContrasena" name="" required><br>
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="fecha_nacimiento" class="col-form-label">Fecha de nacimiento:</label>
-								<input type="date" class="form-control" id="registroFechaNacimiento" name="fecha_nacimiento" required><br>
+								<input type="date" class="form-control" id="registroFechaNacimiento" name="" required><br>
 							</div>
 						</div>
 
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="nivel" class="col-form-label">Nivel:</label>
-								<select id="registroNivel" class="col-form-label" name="nivel" required>
+								<select id="registroNivel" class="col-form-label" name="" required>
 									<option value="" selected>Seleccione un nivel:</option>
 									<option value="Administrador">Administrador</option>
 									<option value="Supervisor">Supervisor</option>
@@ -87,7 +87,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="imagen">Insertar una imagen:</label>
-								<input type="file" id="registroImagen" accept="image/png, image/jpeg, image/jpg" name="imagen">
+								<input type="file" id="registroImagen" accept="image/png, image/jpeg, image/jpg" name="">
 							</div>
 						</div>
 

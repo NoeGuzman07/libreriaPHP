@@ -21,18 +21,21 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
     datos.append("registroNivel", nivel);
     datos.append("registroImagen", imagen);
 
-
 	$.ajax({
 
-		url: "ajax/ajax_usuarios.php",
+		url:url+"views/ajax/ajax_usuarios.php",
 		method: "POST",
 		data: datos,
 		cache: false,
 		contentType: false,
 		processData: false,
-		dataType: "json",
+        beforeSend: function() {
+
+        	loading(true);
+
+        },
         
-		success:function(respuesta){
+        success:function(respuesta) {
         	
             console.log("respuesta", respuesta);
 
@@ -42,14 +45,14 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
 
                 window.location = url+"usuarios";
 
-            } else {
+            } else{
 
-                swal("¡Error!", "¡Error!", "error");
+                swal("¡Error!", "¡Error de dar de alta al usuario!", "error");
 
             }
 
         }
 
-	});
+    });
 
 });

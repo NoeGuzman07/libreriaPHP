@@ -2,39 +2,25 @@
 
     class UsuariosController {
         
-        //Controller Registro de usuarios
-        static public function ControllerRegistroUsuarios() {
+        static public function ControllerRegistroUsuarios($datosController) {
 
-            if(isset($_POST["registroNombreCompleto"])) {
+            if(isset($datosController["nombre_completo"])) {
 
-                if(preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["registroNombreCompleto"]) &&
-			       preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["registroCorreoElectronico"]) &&
-			       preg_match('/^[0-9a-zA-Z]+$/', $_POST["registroContrasena"])) {
+                    $encriptar = crypt($datosController["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-                    $tabla = "usuarios";
-
-                    $encriptar = crypt($_POST["registroContrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
-                    $datos = array("nombre_completo" => $_POST["registroNombreCompleto"],
-                                   "correo_electronico" => $_POST["registroCorreoElectronico"],
+                    $datos = array("nombre_completo" => $datosController["nombre_completo"],
+                                   "correo_electronico" => $datosController["correo_electronico"],
                                    "contrasena" => $encriptar,
-                                   "confirmar_contrasena" => $_POST["registroConfirmarContrasena"],
-                                   "fecha_nacimiento" => $_POST["registroFechaNacimiento"],
-                                   "nivel" => $_POST["registroNivel"],
-                                   "imagen" => $_POST["registroImagen"]);
+                                   "confirmar_contrasena" => $datosController["confirmar_contrasena"],
+                                   "fecha_nacimiento" => $datosController["fecha_nacimiento"],
+                                   "nivel" => $datosController["nivel"],
+                                   "imagen" => $datosController["imagen"]);
 
                     //Se instancia el Modelo:
-                    $respuesta = UsuariosModel::modelRegistroUsuarios($tabla, $datos);
+                    $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
 
                     return $respuesta;
                 
-                } else {
-
-                    $respuesta = "error";
-                    return $respuesta;
-
-                }
-
             }
 
         }

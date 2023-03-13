@@ -5,17 +5,17 @@ require_once "conexion.php";
 class UsuariosModel extends Conexion {
 
 	//Modelo Registro de usuarios
-	static public function modelRegistroUsuarios($tabla, $datos) {
+	static public function modelRegistroUsuarios($datosModel) {
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre_completo, correo_electronico, contrasena, confirmar_contrasena, fecha_nacimiento, nivel, imagen) VALUES (:nombre_completo, :correo_electronico, :contrasena, :confirmar_contrasena, :fecha_nacimiento, :nivel, :imagen)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO usuarios(nombre_completo, correo_electronico, contrasena, confirmar_contrasena, fecha_nacimiento, nivel, imagen) VALUES (:nombre_completo, :correo_electronico, :contrasena, :confirmar_contrasena, :fecha_nacimiento, :nivel, :imagen)");
 
-		$stmt->bindParam(":nombre_completo", $datos["datos"], PDO::PARAM_STR);
-		$stmt->bindParam(":correo_electronico", $datos["datos"], PDO::PARAM_STR);
-		$stmt->bindParam(":contrasena", $datos["datos"], PDO::PARAM_STR);
-		$stmt->bindParam(":confirmar_contrasena", $datos["datos"], PDO::PARAM_STR);
-		$stmt->bindParam(":fecha_nacimiento", $datos["datos"], PDO::PARAM_STR);
-		$stmt->bindParam(":nivel", $datos["datos"], PDO::PARAM_STR);
-		$stmt->bindParam(":imagen", $datos["datos"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre_completo", $datosModel, PDO::PARAM_STR);
+		$stmt->bindParam(":correo_electronico", $datosModel, PDO::PARAM_STR);
+		$stmt->bindParam(":contrasena", $datosModel, PDO::PARAM_STR);
+		$stmt->bindParam(":confirmar_contrasena", $datosModel, PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_nacimiento", $datosModel, PDO::PARAM_STR);
+		$stmt->bindParam(":nivel", $datosModel, PDO::PARAM_STR);
+		$stmt->bindParam(":imagen", $datosModel, PDO::PARAM_STR);
 
 		if ($stmt->execute()) {
 
