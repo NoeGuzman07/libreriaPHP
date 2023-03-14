@@ -9,13 +9,13 @@ class UsuariosModel extends Conexion {
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO usuarios(nombre_completo, correo_electronico, contrasena, confirmar_contrasena, fecha_nacimiento, nivel, imagen) VALUES (:nombre_completo, :correo_electronico, :contrasena, :confirmar_contrasena, :fecha_nacimiento, :nivel, :imagen)");
 
-		$stmt->bindParam(":nombre_completo", $datosModel, PDO::PARAM_STR);
-		$stmt->bindParam(":correo_electronico", $datosModel, PDO::PARAM_STR);
-		$stmt->bindParam(":contrasena", $datosModel, PDO::PARAM_STR);
-		$stmt->bindParam(":confirmar_contrasena", $datosModel, PDO::PARAM_STR);
-		$stmt->bindParam(":fecha_nacimiento", $datosModel, PDO::PARAM_STR);
-		$stmt->bindParam(":nivel", $datosModel, PDO::PARAM_STR);
-		$stmt->bindParam(":imagen", $datosModel, PDO::PARAM_STR);
+		$stmt->bindParam(":nombre_completo", $datosModel["nombre_completo"], PDO::PARAM_STR);
+		$stmt->bindParam(":correo_electronico", $datosModel["correo_electronico"], PDO::PARAM_STR);
+		$stmt->bindParam(":contrasena", $datosModel["contrasena"], PDO::PARAM_STR);
+		$stmt->bindParam(":confirmar_contrasena", $datosModel["confirmar_contrasena"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_nacimiento", $datosModel["fecha_nacimiento"], PDO::PARAM_STR);
+		$stmt->bindParam(":nivel", $datosModel["nivel"], PDO::PARAM_STR);
+		$stmt->bindParam(":imagen", $datosModel["imagen"], PDO::PARAM_STR);
 
 		if ($stmt->execute()) {
 

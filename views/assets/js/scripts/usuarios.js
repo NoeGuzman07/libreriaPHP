@@ -45,7 +45,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
 
                 window.location = url+"usuarios";
 
-            } else{
+            } else {
 
                 swal("¡Error!", "¡Error de dar de alta al usuario!", "error");
 

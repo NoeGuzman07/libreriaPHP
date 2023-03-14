@@ -6,21 +6,34 @@
 
             if(isset($datosController["nombre_completo"])) {
 
-                    $encriptar = crypt($datosController["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                    $encriptarContrasena = crypt($datosController["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                    $encriptarConfirmarContrasena = crypt($datosController["confirmar_contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                    
+                    $datos = array ("nombre_completo" => $datosController["nombre_completo"],
+                                    "correo_electronico" => $datosController["correo_electronico"],
+                                    "contrasena" => $encriptarContrasena,
+                                    "confirmar_contrasena" => $encriptarConfirmarContrasena,
+                                    "fecha_nacimiento" => $datosController["fecha_nacimiento"],
+                                    "nivel" => $datosController["nivel"],
+                                    "imagen" => $datosController["imagen"]);
 
-                    $datos = array("nombre_completo" => $datosController["nombre_completo"],
-                                   "correo_electronico" => $datosController["correo_electronico"],
-                                   "contrasena" => $encriptar,
-                                   "confirmar_contrasena" => $datosController["confirmar_contrasena"],
-                                   "fecha_nacimiento" => $datosController["fecha_nacimiento"],
-                                   "nivel" => $datosController["nivel"],
-                                   "imagen" => $datosController["imagen"]);
+                     $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
+                    
 
-                    //Se instancia el Modelo:
-                    $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
+                    if($respuesta) {
 
-                    return $respuesta;
+                        echo 'usuarios';
+
+                    } else {
+
+                        echo 'error';
+
+                    }
                 
+            } else {
+
+                echo 'error';
+
             }
 
         }
