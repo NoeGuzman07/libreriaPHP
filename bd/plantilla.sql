@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.4-dev+20220423.4c738ad5e4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-07-2022 a las 00:33:55
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.0.17
+-- Tiempo de generación: 19-03-2023 a las 08:34:16
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,49 +24,52 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `admin_usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `admin_usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` text COLLATE utf8_spanish2_ci NOT NULL,
-  `apellido` text COLLATE utf8_spanish2_ci NOT NULL,
-  `correo_electronico` text COLLATE utf8_spanish2_ci NOT NULL,
-  `contrasena` text COLLATE utf8_spanish2_ci NOT NULL,
-  `nivel` text COLLATE utf8_spanish2_ci NOT NULL,
-  `telefono` text COLLATE utf8_spanish2_ci NOT NULL,
-  `imagen` text COLLATE utf8_spanish2_ci NOT NULL,
-  `estado` int(11) NOT NULL,
-  `id_alta` int(11) NOT NULL,
-  `fecha_alta` datetime NOT NULL
+CREATE TABLE `usuarios` (
+  `id_usuarios` int(11) NOT NULL,
+  `nombre_completo` text NOT NULL,
+  `correo_electronico` text NOT NULL,
+  `contrasena` text NOT NULL,
+  `confirmar_contrasena` text NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `nivel` text NOT NULL,
+  `imagen` text NOT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `fecha_alta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `admin_usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `admin_usuarios` (`id`, `nombre`, `apellido`, `correo_electronico`, `contrasena`, `nivel`, `telefono`, `imagen`, `estado`, `id_alta`, `fecha_alta`) VALUES
-(1, 'Rigoberto', 'Castro', 'admin@admin.com', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', '6865706609', 'views/assets/img/usuario_default.png', 0, 1, '2022-07-21 00:28:03');
+INSERT INTO `usuarios` (`id_usuarios`, `nombre_completo`, `correo_electronico`, `contrasena`, `confirmar_contrasena`, `fecha_nacimiento`, `nivel`, `imagen`, `estado`, `fecha_alta`) VALUES
+(1, 'NOE NORBERTO GUZMAN LOPEZ', 'noe.guzman@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', '1997-06-01', 'Administrador', 'views/assets/img/usuario_default.png', 0, '2023-03-18'),
+(2, 'RICHELLE ANN GERONIMO APAN', 'richelle.geronimo@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5auqvBLORXx0K0k2BO/CtnzfiwTzbNOZgO', '$2a$07$asxx54ahjppf45sd87a5auqvBLORXx0K0k2BO/CtnzfiwTzbNOZgO', '1999-02-05', 'Supervisor', '', NULL, '2023-03-19'),
+(3, 'MARIA ANGELICA ASTORGA VARGAS', 'angelica.astorga@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aukR8YBxUa8PWKOmCouU4GOJTI4VuXKa2', '$2a$07$asxx54ahjppf45sd87a5aukR8YBxUa8PWKOmCouU4GOJTI4VuXKa2', '1987-05-02', 'Administrador', '', NULL, '2023-03-19'),
+(4, 'DANIELA CHAVEZ HERNANDEZ', 'daniela.chavez@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aufU9zR.QEVeGtiFhIxJyIKwa7gHQGUeW', '$2a$07$asxx54ahjppf45sd87a5aufU9zR.QEVeGtiFhIxJyIKwa7gHQGUeW', '1998-03-04', 'Supervisor', '', NULL, '2023-03-19'),
+(5, 'MONICA CRISTINA LAM MORA', 'monica.lam@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '1988-07-22', 'Administrador', '', NULL, '2023-03-19');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `admin_usuarios`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `admin_usuarios`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuarios`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `admin_usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `admin_usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `usuarios`
+  MODIFY `id_usuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

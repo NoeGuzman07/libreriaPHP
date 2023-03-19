@@ -10,6 +10,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
     let fecha_nacimiento  = $("#registroFechaNacimiento").val();
     let nivel = $("#registroNivel").val();
     let imagen  = $("#registroImagen").val();
+    let fecha_alta  = $("#registroFechaAlta").val();
 
     let datos = new FormData();
 
@@ -20,6 +21,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
     datos.append("registroFechaNacimiento", fecha_nacimiento);
     datos.append("registroNivel", nivel);
     datos.append("registroImagen", imagen);
+    datos.append("registroFechaAlta", fecha_alta);
 
 	$.ajax({
 
@@ -56,3 +58,68 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
     });
 
 });
+
+/* FORMULARIO MODAL: REGISTRO DE USUARIOS */
+
+$("#registroCorreoElectronico").change(function() {
+
+    //Comando que ayuda a limpiar el mensaje de email repetido cuando se introduce un email nuevo
+    $(".alert").remove();
+
+    var correo_electronico = $(this).val();
+    var datos = new FormData();
+    datos.append("validarCorreoElectronico", correo_electronico);
+
+    $.ajax({
+
+        url:url+"views/ajax/ajax_usuarios.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            
+            //Condicion para verificar que si el correo existe o no
+            if(respuesta) {
+
+                $("#registroCorreoElectronico").val("");
+
+                $("#registroCorreoElectronico").parent().after(`
+                    <div class="alert alert-warning">
+                        <b>ERROR:</b>
+                        El correo electronico ya existe, por favor introduzca otro diferente
+                    
+                    </div>
+                `)
+
+            }
+
+        }
+
+    });
+
+});
+
+/* FORMULARIO MODAL: REGISTRO DE USUARIOS */
+
+$("#registroConfirmarContrasena").change(function() {
+
+    var contrasena = document.getElementById("#registroContrasena").value;
+    var confirmar_contrasena = document.getElementById("#registroConfirmarContrasena").value;
+
+    if(contrasena!=confirmar_contrasena) {
+
+        //Instrucciones...
+        $("#registroConfirmarContrasena").val("");
+        $("#registroConfirmarContrasena").parent().after(`
+            <div class="alert alert-warning">
+                <b>ERROR:</b>
+                la confirmacion de contrasena no coincide, intente de nuevo!    
+            </div>
+        `)
+
+    }
+
+})

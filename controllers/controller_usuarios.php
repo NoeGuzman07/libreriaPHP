@@ -15,7 +15,8 @@
                                     "confirmar_contrasena" => $encriptarConfirmarContrasena,
                                     "fecha_nacimiento" => $datosController["fecha_nacimiento"],
                                     "nivel" => $datosController["nivel"],
-                                    "imagen" => $datosController["imagen"]);
+                                    "imagen" => $datosController["imagen"],
+                                    "fecha_alta" => $datosController["fecha_alta"]);
 
                      $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
                     

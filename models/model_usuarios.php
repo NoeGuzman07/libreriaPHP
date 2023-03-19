@@ -7,7 +7,7 @@ class UsuariosModel extends Conexion {
 	//Modelo Registro de usuarios
 	static public function modelRegistroUsuarios($datosModel) {
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO usuarios(nombre_completo, correo_electronico, contrasena, confirmar_contrasena, fecha_nacimiento, nivel, imagen) VALUES (:nombre_completo, :correo_electronico, :contrasena, :confirmar_contrasena, :fecha_nacimiento, :nivel, :imagen)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO usuarios(nombre_completo, correo_electronico, contrasena, confirmar_contrasena, fecha_nacimiento, nivel, imagen, fecha_alta) VALUES (:nombre_completo, :correo_electronico, :contrasena, :confirmar_contrasena, :fecha_nacimiento, :nivel, :imagen, :fecha_alta)");
 
 		$stmt->bindParam(":nombre_completo", $datosModel["nombre_completo"], PDO::PARAM_STR);
 		$stmt->bindParam(":correo_electronico", $datosModel["correo_electronico"], PDO::PARAM_STR);
@@ -16,6 +16,7 @@ class UsuariosModel extends Conexion {
 		$stmt->bindParam(":fecha_nacimiento", $datosModel["fecha_nacimiento"], PDO::PARAM_STR);
 		$stmt->bindParam(":nivel", $datosModel["nivel"], PDO::PARAM_STR);
 		$stmt->bindParam(":imagen", $datosModel["imagen"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_alta", $datosModel["fecha_alta"], PDO::PARAM_STR);
 
 		if ($stmt->execute()) {
 
@@ -37,7 +38,7 @@ class UsuariosModel extends Conexion {
 
 		if($item == null && $valor == null){
 
-            $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha_alta, '%d/%m/%Y') AS fecha_alta FROM $tabla");
+            $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha_alta, '%d/%m/%Y') AS fecha_alta, DATE_FORMAT(fecha_nacimiento, '%d/%m/%Y') AS fecha_nacimiento FROM $tabla");
 
 			$stmt->execute();
 
@@ -45,7 +46,7 @@ class UsuariosModel extends Conexion {
 
 		}else{
 
-            $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha_alta, '%d/%m/%Y') AS fecha_alta FROM $tabla WHERE $item = :$item");
+            $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha_alta, '%d/%m/%Y') AS fecha_alta, DATE_FORMAT(fecha_nacimiento, '%d/%m/%Y') AS fecha_nacimiento FROM $tabla WHERE $item = :$item");
 
 			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 

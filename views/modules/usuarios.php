@@ -38,21 +38,21 @@
 
 					<div class="form-row row">
 
-						<div class="col-md-6">
+						<div class="col-md-10">
 							<div class="form-group">
 								<label for="nombre_completo" class="col-form-label">Nombre completo:</label>
 								<input type="text" class="form-control" id="registroNombreCompleto" name="" required>
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-10">
 							<div class="form-group">
 								<label for="correo_electronico" class="col-form-label">Correo Electronico:</label>
 								<input type="email" class="form-control" id="registroCorreoElectronico" name="" required><br>
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-16">
 							<div class="form-group">
 								<label for="contrasena" class="col-form-label">Contrasena:</label>
 								<input type="password" class="form-control" id="registroContrasena" name="" required><br>
@@ -84,10 +84,18 @@
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-10">
 							<div class="form-group">
 								<label for="imagen">Insertar una imagen:</label>
 								<input type="file" id="registroImagen" accept="image/png, image/jpeg, image/jpg" name="">
+							</div>
+						</div>
+
+						<div class="col-md-10">
+							<div class="form-group">
+								<label for="fecha_alta" class="col-form-label">Fecha de alta:</label>
+								<?php $fcha = date("Y-m-d");?>
+								<input type="datetime" class="form-control"  id="registroFechaAlta"value="<?php echo $fcha;?>" readonly>
 							</div>
 						</div>
 
@@ -150,12 +158,12 @@
 					<div class="btn-group">
 
 						<div class="px-1">
-							<a href="index.php?pagina=editar&id=<?php echo $value["id_usuario"]; ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+							<a href="index.php?pagina=editar&id=<?php echo $value["id_usuarios"]; ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
 						</div>
 
 						<form method="POST">
 
-							<input type="hidden" value="<?php echo $value["id_usuario"]; ?>" name="eliminarUsuario">
+							<input type="hidden" value="<?php echo $value["id_usuarios"]; ?>" name="eliminarUsuario">
 
 							<button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 

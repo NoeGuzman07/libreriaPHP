@@ -26,7 +26,7 @@ class LoginController{
 
 					session_start();
 					$_SESSION['iniciarSesion'] = "ok";
-					$_SESSION['id_usuario'] = $respuesta['id_usuario'];
+					$_SESSION['id_usuarios'] = $respuesta['id_usuarios'];
 					$_SESSION['nivel'] = $respuesta['nivel'];
 					$_SESSION['nombre_completo'] = $respuesta['nombre_completo'];
 					$_SESSION['imagen'] = $respuesta['imagen'];
