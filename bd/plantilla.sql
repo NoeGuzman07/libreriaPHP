@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-03-2023 a las 08:34:16
+-- Tiempo de generación: 20-03-2023 a las 22:00:15
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.0.25
 
@@ -49,7 +49,8 @@ INSERT INTO `usuarios` (`id_usuarios`, `nombre_completo`, `correo_electronico`, 
 (2, 'RICHELLE ANN GERONIMO APAN', 'richelle.geronimo@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5auqvBLORXx0K0k2BO/CtnzfiwTzbNOZgO', '$2a$07$asxx54ahjppf45sd87a5auqvBLORXx0K0k2BO/CtnzfiwTzbNOZgO', '1999-02-05', 'Supervisor', '', NULL, '2023-03-19'),
 (3, 'MARIA ANGELICA ASTORGA VARGAS', 'angelica.astorga@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aukR8YBxUa8PWKOmCouU4GOJTI4VuXKa2', '$2a$07$asxx54ahjppf45sd87a5aukR8YBxUa8PWKOmCouU4GOJTI4VuXKa2', '1987-05-02', 'Administrador', '', NULL, '2023-03-19'),
 (4, 'DANIELA CHAVEZ HERNANDEZ', 'daniela.chavez@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aufU9zR.QEVeGtiFhIxJyIKwa7gHQGUeW', '$2a$07$asxx54ahjppf45sd87a5aufU9zR.QEVeGtiFhIxJyIKwa7gHQGUeW', '1998-03-04', 'Supervisor', '', NULL, '2023-03-19'),
-(5, 'MONICA CRISTINA LAM MORA', 'monica.lam@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '1988-07-22', 'Administrador', '', NULL, '2023-03-19');
+(5, 'MONICA CRISTINA LAM MORA', 'monica.lam@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '1988-07-22', 'Administrador', '', NULL, '2023-03-19'),
+(6, 'JOEL HUMBERTO GUZMAN LOPEZ', 'joel.guzman@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aur3y3hpOZhQHOXxL.eNM6VSgO2mE2Tt6', '$2a$07$asxx54ahjppf45sd87a5aur3y3hpOZhQHOXxL.eNM6VSgO2mE2Tt6', '1996-03-02', 'Supervisor', '', NULL, '2023-03-20');
 
 --
 -- Índices para tablas volcadas
@@ -69,7 +70,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

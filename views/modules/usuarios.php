@@ -12,13 +12,13 @@
 <!-- Boton Modal para el registro de usuarios -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">+ Registrar usuario</button><br>
 
-<!-- Formulario Modal -->
+<!-- Formulario Modal: Registro de usuarios -->
 
 <br>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		
 		<div class="modal-content">
 			
@@ -38,42 +38,50 @@
 
 					<div class="form-row row">
 
-						<div class="col-md-10">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="nombre_completo" class="col-form-label">Nombre completo:</label>
 								<input type="text" class="form-control" id="registroNombreCompleto" name="" required>
 							</div>
 						</div>
 
-						<div class="col-md-10">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="correo_electronico" class="col-form-label">Correo Electronico:</label>
 								<input type="email" class="form-control" id="registroCorreoElectronico" name="" required><br>
 							</div>
 						</div>
 
-						<div class="col-md-16">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="contrasena" class="col-form-label">Contrasena:</label>
 								<input type="password" class="form-control" id="registroContrasena" name="" required><br>
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="confirmar_contrasena" class="col-form-label">Confirmar Contrasena:</label>
 								<input type="password" class="form-control" id="registroConfirmarContrasena" name="" required><br>
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="fecha_nacimiento" class="col-form-label">Fecha de nacimiento:</label>
 								<input type="date" class="form-control" id="registroFechaNacimiento" name="" required><br>
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-5">
+							<div class="form-group">
+								<label for="fecha_alta" class="col-form-label">Fecha de alta:</label>
+								<?php $fcha = date("Y-m-d");?>
+								<input type="datetime" class="form-control"  id="registroFechaAlta"value="<?php echo $fcha;?>" readonly>
+							</div>
+						</div>
+
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="nivel" class="col-form-label">Nivel:</label>
 								<select id="registroNivel" class="col-form-label" name="" required>
@@ -84,18 +92,10 @@
 							</div>
 						</div>
 
-						<div class="col-md-10">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="imagen">Insertar una imagen:</label>
 								<input type="file" id="registroImagen" accept="image/png, image/jpeg, image/jpg" name="">
-							</div>
-						</div>
-
-						<div class="col-md-10">
-							<div class="form-group">
-								<label for="fecha_alta" class="col-form-label">Fecha de alta:</label>
-								<?php $fcha = date("Y-m-d");?>
-								<input type="datetime" class="form-control"  id="registroFechaAlta"value="<?php echo $fcha;?>" readonly>
 							</div>
 						</div>
 

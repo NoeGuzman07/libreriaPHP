@@ -106,20 +106,28 @@ $("#registroCorreoElectronico").change(function() {
 
 $("#registroConfirmarContrasena").change(function() {
 
-    var contrasena = document.getElementById('registroContrasena').value;
-    var confirmar_contrasena = document.getElementById('registroConfirmarContrasena').value;
+    //Comando que ayuda a limpiar el mensaje de email repetido cuando se introduce un email nuevo
+    $(".alert").remove();
 
+    let contrasena  = $("#registroContrasena").val();
+    let confirmar_contrasena  = $("#registroConfirmarContrasena").val();
+    var datos = new FormData();
+    datos.append("registroContrasena", contrasena);
+    datos.append("registroConfirmarContrasena", confirmar_contrasena);
+
+    //Condicion para verificar que si el correo existe o no
     if(confirmar_contrasena!=contrasena) {
 
+        $("#registroContrasena").val("");
         $("#registroConfirmarContrasena").val("");
+
         $("#registroConfirmarContrasena").parent().after(`
             <div class="alert alert-warning">
                 <b>ERROR:</b>
-                la confirmacion de contrasena no coincide, intente de nuevo!    
+                Las contrasenas no coinciden, intente de nuevo
+            
             </div>
         `)
-
-    } else {
 
     }
 
