@@ -106,12 +106,11 @@ $("#registroCorreoElectronico").change(function() {
 
 $("#registroConfirmarContrasena").change(function() {
 
-    var contrasena = document.getElementById("#registroContrasena").value;
-    var confirmar_contrasena = document.getElementById("#registroConfirmarContrasena").value;
+    var contrasena = document.getElementById('registroContrasena').value;
+    var confirmar_contrasena = document.getElementById('registroConfirmarContrasena').value;
 
-    if(contrasena!=confirmar_contrasena) {
+    if(confirmar_contrasena!=contrasena) {
 
-        //Instrucciones...
         $("#registroConfirmarContrasena").val("");
         $("#registroConfirmarContrasena").parent().after(`
             <div class="alert alert-warning">
@@ -120,6 +119,8 @@ $("#registroConfirmarContrasena").change(function() {
             </div>
         `)
 
+    } else {
+
     }
 
-})
+});
