@@ -16,6 +16,7 @@
                                     "fecha_nacimiento" => $datosController["fecha_nacimiento"],
                                     "nivel" => $datosController["nivel"],
                                     "imagen" => $datosController["imagen"],
+                                    "estado" => $datosController["estado"],
                                     "fecha_alta" => $datosController["fecha_alta"]);
 
                      $respuesta = UsuariosModel::modelRegistroUsuarios($datos);

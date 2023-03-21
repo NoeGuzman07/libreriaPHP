@@ -7,7 +7,7 @@ class UsuariosModel extends Conexion {
 	//Modelo Registro de usuarios
 	static public function modelRegistroUsuarios($datosModel) {
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO usuarios(nombre_completo, correo_electronico, contrasena, confirmar_contrasena, fecha_nacimiento, nivel, imagen, fecha_alta) VALUES (:nombre_completo, :correo_electronico, :contrasena, :confirmar_contrasena, :fecha_nacimiento, :nivel, :imagen, :fecha_alta)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO usuarios(nombre_completo, correo_electronico, contrasena, confirmar_contrasena, fecha_nacimiento, nivel, imagen, estado, fecha_alta) VALUES (:nombre_completo, :correo_electronico, :contrasena, :confirmar_contrasena, :fecha_nacimiento, :nivel, :imagen, :estado, :fecha_alta)");
 
 		$stmt->bindParam(":nombre_completo", $datosModel["nombre_completo"], PDO::PARAM_STR);
 		$stmt->bindParam(":correo_electronico", $datosModel["correo_electronico"], PDO::PARAM_STR);
@@ -16,6 +16,7 @@ class UsuariosModel extends Conexion {
 		$stmt->bindParam(":fecha_nacimiento", $datosModel["fecha_nacimiento"], PDO::PARAM_STR);
 		$stmt->bindParam(":nivel", $datosModel["nivel"], PDO::PARAM_STR);
 		$stmt->bindParam(":imagen", $datosModel["imagen"], PDO::PARAM_STR);
+		$stmt->bindParam(":estado", $datosModel["estado"], PDO::PARAM_INT);
 		$stmt->bindParam(":fecha_alta", $datosModel["fecha_alta"], PDO::PARAM_STR);
 
 		if ($stmt->execute()) {
@@ -57,6 +58,24 @@ class UsuariosModel extends Conexion {
 
 		//$stmt->close();
 		//$stmt = null;	
+
+	}
+
+	static public function modelEliminarUsuarios($tabla, $valor) {
+
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuarios = :id_usuarios");
+
+		$stmt->bindParam(":id_usuarios", $valor, PDO::PARAM_INT);
+
+		if($stmt->execute()) {
+
+			return "ok";
+
+		} else {
+
+			print_r(Conexion::conectar()->errorInfo());
+
+		}
 
 	}
 

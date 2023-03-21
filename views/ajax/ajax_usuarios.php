@@ -45,6 +45,7 @@ if(isset($_POST['registroNombreCompleto'])) {
         "fecha_nacimiento"=>$_POST['registroFechaNacimiento'],
         "nivel"=>$_POST['registroNivel'],
         "imagen"=>$_POST['registroImagen'],
+        "estado"=>$_POST['registroEstado'],
         "fecha_alta"=>$_POST['registroFechaAlta']
 
     );

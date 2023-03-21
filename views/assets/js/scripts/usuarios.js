@@ -10,6 +10,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
     let fecha_nacimiento  = $("#registroFechaNacimiento").val();
     let nivel = $("#registroNivel").val();
     let imagen  = $("#registroImagen").val();
+    let estado  = $("#registroEstado").val();
     let fecha_alta  = $("#registroFechaAlta").val();
 
     let datos = new FormData();
@@ -21,6 +22,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
     datos.append("registroFechaNacimiento", fecha_nacimiento);
     datos.append("registroNivel", nivel);
     datos.append("registroImagen", imagen);
+    datos.append("registroEstado", estado);
     datos.append("registroFechaAlta", fecha_alta);
 
 	$.ajax({
@@ -129,6 +131,22 @@ $("#registroConfirmarContrasena").change(function() {
             </div>
         `)
 
+    }
+
+});
+
+/* ESTADO DEL USUARIO: FUNCION PARA DETERINAR SI PUEDE ACCEDER O NO AL SISTEMA */
+
+$("#registroEstado").change(function() {
+
+    let estado  = $("#registroEstado").val();
+    var datos = new FormData();
+    datos.append("registroEstado", estado);
+
+    if($('#registroEstado').is(':checked') ) {
+        $("#registroEstado").val('0');
+    } else {
+        $("#registroEstado").val('1');
     }
 
 });
