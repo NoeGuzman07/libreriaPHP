@@ -2,11 +2,11 @@
 
     class UsuariosController {
         
+        //CONTROLLER: REGISTRO DE USUARIOS
         static public function ControllerRegistroUsuarios($datosController) {
 
-            //Controller Registro de usuarios
             //var_dump($datosController);
-            
+
             if(isset($datosController["nombre_completo"])) {
 
                     $encriptarContrasena = crypt($datosController["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
@@ -18,11 +18,11 @@
                                     "confirmar_contrasena" => $encriptarConfirmarContrasena,
                                     "fecha_nacimiento" => $datosController["fecha_nacimiento"],
                                     "nivel" => $datosController["nivel"],
-                                    "imagen" => $datosController["imagen"],
+                                    "imagen" => GeneralController::subirImagen($datosController["imagen"], "usuarios_imagenes", "usuarios"),
                                     "estado" => $datosController["estado"],
                                     "fecha_alta" => $datosController["fecha_alta"]);
 
-                     $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
+                    $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
 
                     if($respuesta) {
 
@@ -42,7 +42,7 @@
 
         }
         
-        //Controller Consulta de usuarios
+        //CONTROLLER: CONSULTA DE DATOS - GENERAL Y PARTICULAR
         static public function ControllerConsultaUsuarios ($item, $valor) {
 
             $tabla = "usuarios";
@@ -51,14 +51,12 @@
 
         }
 
-        //Controller Eliminar usuarios
+        //CONTROLLER: ELIMINAR USUARIOS
         static public function ControllerEliminarUsuarios($datosController) {
 
             //var_dump($datosController);
-
             return UsuariosModel::modelEliminarUsuarios($datosController);
 
-    
         }
 
     }

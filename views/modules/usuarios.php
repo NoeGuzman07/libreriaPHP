@@ -1,6 +1,6 @@
 <?php
 
-	//Consulta de datos
+	//Consulta de datos de usuarios, se llama al controlador
 	$usuarios = UsuariosController::ControllerConsultaUsuarios(null, null);
 
 ?>
@@ -80,13 +80,6 @@
 								<input type="datetime" class="form-control"  id="registroFechaAlta"value="<?php echo $fcha;?>" readonly>
 							</div>
 						</div>
-
-						<!--<div class="col-md-5">
-							<div class="form-group">
-								<label for="estado" class="col-form-label">Estado:</label>
-								<input type="number" class="form-control" id="registroEstado" name="" required><br>
-							</div>
-						</div>-->
 
 						<!-- Rectangular switch para mostrar el estado del usuario -->
 

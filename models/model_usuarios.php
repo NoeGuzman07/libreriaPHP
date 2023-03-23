@@ -34,7 +34,7 @@ class UsuariosModel extends Conexion {
 
 	}
 	
-	//Modelo Consulta de datos
+	//Modelo Consulta de datos: Consulta General y Consulta Particular
 	static public function modelConsultaUsuarios($tabla, $item, $valor) {
 
 		if($item == null && $valor == null) {
@@ -77,6 +77,9 @@ class UsuariosModel extends Conexion {
 			print_r(Conexion::conectar()->errorInfo());
 
 		}
+
+		//$stmt->close();
+		//$stmt = null;
 
 	}
 

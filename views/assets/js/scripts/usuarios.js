@@ -65,7 +65,8 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
 
 $("#registroCorreoElectronico").change(function() {
 
-    //Comando que ayuda a limpiar el mensaje de email repetido cuando se introduce un email nuevo
+    //COMANDO QUE AYUDA A LIMPIAR EL MENSAJE QUE SE MUESTRA CUANDO 
+    //UN CORREO ELECTRONICO YA EXISTE EN EL SISTEMA
     $(".alert").remove();
 
     var correo_electronico = $(this).val();
@@ -83,7 +84,7 @@ $("#registroCorreoElectronico").change(function() {
         dataType: "json",
         success: function(respuesta) {
             
-            //Condicion para verificar que si el correo existe o no
+            //CONDICION QUE VERIFICA QUE SI EL CORREO ELECTRONICO EXISTE
             if(respuesta) {
 
                 $("#registroCorreoElectronico").val("");
@@ -108,7 +109,8 @@ $("#registroCorreoElectronico").change(function() {
 
 $("#registroConfirmarContrasena").change(function() {
 
-    //Comando que ayuda a limpiar el mensaje de email repetido cuando se introduce un email nuevo
+    //COMANDO QUE AYUDA A LIMPIAR EL MENSAJE QUE SE MUESTRA CUANDO 
+    //UN CORREO ELECTRONICO YA EXISTE EN EL SISTEMA
     $(".alert").remove();
 
     let contrasena  = $("#registroContrasena").val();

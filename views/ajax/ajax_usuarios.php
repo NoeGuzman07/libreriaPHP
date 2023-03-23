@@ -6,8 +6,7 @@ require_once "../../controllers/controller_general.php";
 
 class Usuarios {
 
-    //Registro de usuarios
-    //Funcion que permite llamar metodos del controlador, se puede utilizar para los demas metodos de un sistema CRUD
+    //FUNCION QUE AYUDA A LLAMAR A LOS METODOS DE CONTROLLER
     public $datosUsuarios;
     public $controllerUsuarios;
     public function funcionUsuarios() {
@@ -17,8 +16,8 @@ class Usuarios {
         echo $respuesta;
     }
 
-    //Validar Correo electronico existente
-	public $validarCorreoElectronico;
+    //FUNCION PARA VALIDAR CORREO ELECTRONICO EXISTENTE
+    public $validarCorreoElectronico;
 	public function ajaxValidarCorreoElectronico() {
 		$item = "correo_electronico";
 		$valor = $this->validarCorreoElectronico;
@@ -28,7 +27,7 @@ class Usuarios {
 
 }
 
-//Registro de usuarios
+//CONDICION: REGISTRO DE USUARIOS
 if(isset($_POST['registroNombreCompleto'])) {
 
     $datosUsuarios = array (
@@ -50,7 +49,7 @@ if(isset($_POST['registroNombreCompleto'])) {
 
 }
 
-//Ajax Eliminar usuarios del sistema
+//CONDICION: ELIMINAR USUARIOS, SE UTILIZA EL ID Y SE ENVIA A CONTROLLER
 if(isset($_POST['id_usuarios'])) {
 
     $datosUsuarios = $_POST['id_usuarios'];
@@ -62,12 +61,9 @@ if(isset($_POST['id_usuarios'])) {
 
 }
 
-//Correo electronico existente
-//Objeto de AJAX que recibe la variable POST
+//CONDICION: VALIDAR CORREO EXISTENTE
 if(isset($_POST["validarCorreoElectronico"])) {
-
 	$v = new Usuarios();
 	$v -> validarCorreoElectronico = $_POST["validarCorreoElectronico"];
 	$v -> ajaxValidarCorreoElectronico();
-
 }
