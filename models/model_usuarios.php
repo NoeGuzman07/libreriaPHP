@@ -37,7 +37,7 @@ class UsuariosModel extends Conexion {
 	//Modelo Consulta de datos
 	static public function modelConsultaUsuarios($tabla, $item, $valor) {
 
-		if($item == null && $valor == null){
+		if($item == null && $valor == null) {
 
             $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha_alta, '%d/%m/%Y') AS fecha_alta, DATE_FORMAT(fecha_nacimiento, '%d/%m/%Y') AS fecha_nacimiento FROM $tabla");
 
@@ -45,7 +45,7 @@ class UsuariosModel extends Conexion {
 
 			return $stmt -> fetchAll();
 
-		}else{
+		} else {
 
             $stmt = Conexion::conectar()->prepare("SELECT *,DATE_FORMAT(fecha_alta, '%d/%m/%Y') AS fecha_alta, DATE_FORMAT(fecha_nacimiento, '%d/%m/%Y') AS fecha_nacimiento FROM $tabla WHERE $item = :$item");
 
@@ -61,11 +61,12 @@ class UsuariosModel extends Conexion {
 
 	}
 
-	static public function modelEliminarUsuarios($tabla, $valor) {
+	//Modelo Eliminar usuarios del sistema
+	static public function modelEliminarUsuarios($id) {
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuarios = :id_usuarios");
+		$stmt = Conexion::conectar()->prepare("DELETE FROM usuarios WHERE id_usuarios = :id_usuarios");
 
-		$stmt->bindParam(":id_usuarios", $valor, PDO::PARAM_INT);
+		$stmt->bindParam(":id_usuarios", $id, PDO::PARAM_INT);
 
 		if($stmt->execute()) {
 

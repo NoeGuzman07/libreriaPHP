@@ -99,9 +99,10 @@
 								</label>
 							</div>
 						</div>
-
+						
 						<style>
-							.switch {
+
+						.switch {
 							position: relative;
 							display: inline-block;
 							width: 60px;
@@ -160,6 +161,7 @@
 							.slider.round:before {
 							border-radius: 50%;
 							}
+
 							</style>
 
 						<div class="col-md-5">
@@ -242,20 +244,7 @@
 							<a href="index.php?pagina=editar&id=<?php echo $value["id_usuarios"]; ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
 						</div>
 
-						<form method="POST">
-
-							<input type="hidden" value="<?php echo $value["id_usuarios"]; ?>" name="eliminarUsuario">
-
-							<button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-
-							<?php
-
-							//$eliminar = new ControladorFormularios();
-							//$eliminar -> ctrEliminarRegistro();
-
-							?>
-
-						</form>
+						<button class="eliminarUsuarios btn btn-danger" id_usuarios="<?php echo $value["id_usuarios"]; ?>" title="Eliminar usuario"><i class="fas fa-trash-alt"></i></button>
 
 					</div> <br>
 

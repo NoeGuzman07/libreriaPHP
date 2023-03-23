@@ -9,7 +9,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
     let confirmar_contrasena  = $("#registroConfirmarContrasena").val();
     let fecha_nacimiento  = $("#registroFechaNacimiento").val();
     let nivel = $("#registroNivel").val();
-    let imagen  = $("#registroImagen").val();
+    let imagen  = $("#registroImagen")[0].files[0];
     let estado  = $("#registroEstado").val();
     let fecha_alta  = $("#registroFechaAlta").val();
 
@@ -61,7 +61,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
 
 });
 
-/* FORMULARIO MODAL: REGISTRO DE USUARIOS */
+/* EVENTO JAVASCRIPT: CORREO ELECTRONICO */
 
 $("#registroCorreoElectronico").change(function() {
 
@@ -148,5 +148,62 @@ $("#registroEstado").change(function() {
     } else {
         $("#registroEstado").val('1');
     }
+
+});
+
+/* ELIMINAR USUARIO DEL SISTEMA */
+$(document).on('click', '.eliminarUsuarios', function() {
+
+	let id_usuarios = $(this).attr('id_usuarios');
+
+	swal({
+		 title: '¡Cuidado!',
+		 text: '¿Estás seguro que deseas eliminar al usuarios seleccionado?',
+		 icon: 'warning',
+		 buttons: true,
+		 dangerMode: true,
+	   })
+	   .then((willDelete) => {
+		 if (willDelete) {
+
+			let datos = new FormData();
+
+			datos.append("id_usuarios", id_usuarios);
+
+			$.ajax({
+				url:url+"views/ajax/ajax_usuarios.php",
+				method:"POST",
+				data: datos,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success:function(respuesta){
+
+					if(respuesta === "session_expired"){
+
+						sesionExpirada();
+		
+					}else{
+
+						swal({
+							title: '¡Bien!',
+							text: '¡El registro se eliminó exitosamente!',
+							icon: 'success',
+							button: 'Aceptar',
+						 }).then(function() {
+	 
+							 location.reload();
+	 
+						 });
+
+					}
+
+				}
+			});
+	
+		 }else{
+	
+		 }
+	});
 
 });

@@ -4,6 +4,9 @@
         
         static public function ControllerRegistroUsuarios($datosController) {
 
+            //Controller Registro de usuarios
+            //var_dump($datosController);
+            
             if(isset($datosController["nombre_completo"])) {
 
                     $encriptarContrasena = crypt($datosController["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
@@ -20,7 +23,6 @@
                                     "fecha_alta" => $datosController["fecha_alta"]);
 
                      $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
-                    
 
                     if($respuesta) {
 
@@ -47,6 +49,16 @@
             $respuesta = UsuariosModel::modelConsultaUsuarios($tabla, $item, $valor);
             return $respuesta;
 
+        }
+
+        //Controller Eliminar usuarios
+        static public function ControllerEliminarUsuarios($datosController) {
+
+            //var_dump($datosController);
+
+            return UsuariosModel::modelEliminarUsuarios($datosController);
+
+    
         }
 
     }

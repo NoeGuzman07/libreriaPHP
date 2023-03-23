@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2023 a las 22:00:15
+-- Tiempo de generación: 21-03-2023 a las 18:10:17
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.0.25
 
@@ -36,7 +36,7 @@ CREATE TABLE `usuarios` (
   `fecha_nacimiento` date NOT NULL,
   `nivel` text NOT NULL,
   `imagen` text NOT NULL,
-  `estado` int(11) DEFAULT NULL,
+  `estado` int(11) NOT NULL,
   `fecha_alta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
@@ -46,11 +46,10 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuarios`, `nombre_completo`, `correo_electronico`, `contrasena`, `confirmar_contrasena`, `fecha_nacimiento`, `nivel`, `imagen`, `estado`, `fecha_alta`) VALUES
 (1, 'NOE NORBERTO GUZMAN LOPEZ', 'noe.guzman@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', '1997-06-01', 'Administrador', 'views/assets/img/usuario_default.png', 0, '2023-03-18'),
-(2, 'RICHELLE ANN GERONIMO APAN', 'richelle.geronimo@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5auqvBLORXx0K0k2BO/CtnzfiwTzbNOZgO', '$2a$07$asxx54ahjppf45sd87a5auqvBLORXx0K0k2BO/CtnzfiwTzbNOZgO', '1999-02-05', 'Supervisor', '', NULL, '2023-03-19'),
-(3, 'MARIA ANGELICA ASTORGA VARGAS', 'angelica.astorga@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aukR8YBxUa8PWKOmCouU4GOJTI4VuXKa2', '$2a$07$asxx54ahjppf45sd87a5aukR8YBxUa8PWKOmCouU4GOJTI4VuXKa2', '1987-05-02', 'Administrador', '', NULL, '2023-03-19'),
-(4, 'DANIELA CHAVEZ HERNANDEZ', 'daniela.chavez@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aufU9zR.QEVeGtiFhIxJyIKwa7gHQGUeW', '$2a$07$asxx54ahjppf45sd87a5aufU9zR.QEVeGtiFhIxJyIKwa7gHQGUeW', '1998-03-04', 'Supervisor', '', NULL, '2023-03-19'),
-(5, 'MONICA CRISTINA LAM MORA', 'monica.lam@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '1988-07-22', 'Administrador', '', NULL, '2023-03-19'),
-(6, 'JOEL HUMBERTO GUZMAN LOPEZ', 'joel.guzman@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aur3y3hpOZhQHOXxL.eNM6VSgO2mE2Tt6', '$2a$07$asxx54ahjppf45sd87a5aur3y3hpOZhQHOXxL.eNM6VSgO2mE2Tt6', '1996-03-02', 'Supervisor', '', NULL, '2023-03-20');
+(2, 'RICHELLE ANN GERONIMO APAN', 'richelle.geronimo@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5auqvBLORXx0K0k2BO/CtnzfiwTzbNOZgO', '$2a$07$asxx54ahjppf45sd87a5auqvBLORXx0K0k2BO/CtnzfiwTzbNOZgO', '1999-02-05', 'Supervisor', '', 0, '2023-03-19'),
+(3, 'MARIA ANGELICA ASTORGA VARGAS', 'angelica.astorga@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5aukR8YBxUa8PWKOmCouU4GOJTI4VuXKa2', '$2a$07$asxx54ahjppf45sd87a5aukR8YBxUa8PWKOmCouU4GOJTI4VuXKa2', '1987-05-02', 'Administrador', '', 0, '2023-03-19'),
+(5, 'MONICA CRISTINA LAM MORA', 'monica.lam@uabc.edu.mx', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '$2a$07$asxx54ahjppf45sd87a5augvirCmnMWmoK/HslmxtLawzEUEr/l/O', '1988-07-22', 'Administrador', '', 0, '2023-03-19'),
+(20, 'Carolina Herrera', 'carolina.herrera@gmail.com', '$2a$07$asxx54ahjppf45sd87a5aufJzTtpjyf8obRD58yBd91qX7I.WhUSe', '$2a$07$asxx54ahjppf45sd87a5aufJzTtpjyf8obRD58yBd91qX7I.WhUSe', '1988-11-11', 'Supervisor', '', 1, '2023-03-21');
 
 --
 -- Índices para tablas volcadas
@@ -70,7 +69,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
