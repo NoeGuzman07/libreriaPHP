@@ -119,7 +119,8 @@ $("#registroConfirmarContrasena").change(function() {
     datos.append("registroContrasena", contrasena);
     datos.append("registroConfirmarContrasena", confirmar_contrasena);
 
-    //Condicion para verificar que si el correo existe o no
+    //CONDICION QUE PERMITE VERIFICAR SI LA CONTRASENA Y SU CONFIRMACION NO COINCIDEN
+    //DURANTE EL REGISTRO DE USUARIOS
     if(confirmar_contrasena!=contrasena) {
 
         $("#registroContrasena").val("");
