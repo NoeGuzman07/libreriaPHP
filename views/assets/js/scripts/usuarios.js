@@ -34,29 +34,18 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
 		contentType: false,
 		processData: false,
         beforeSend: function() {
-
         	loading(true);
-
         },
         
         success:function(respuesta) {
-        	
             console.log("respuesta", respuesta);
-
         	loading(false);
-
             if(respuesta === "usuarios"){
-
                 window.location = url+"usuarios";
-
             } else {
-
                 swal("¡Error!", "¡Error de dar de alta al usuario!", "error");
-
             }
-
         }
-
     });
 
 });
@@ -65,8 +54,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
 
 $("#registroCorreoElectronico").change(function() {
 
-    //COMANDO QUE AYUDA A LIMPIAR EL MENSAJE QUE SE MUESTRA CUANDO 
-    //UN CORREO ELECTRONICO YA EXISTE EN EL SISTEMA
+    //COMANDO QUE AYUDA A LIMPIAR EL MENSAJE QUE SE MUESTRA CUANDO UN CORREO ELECTRONICO YA EXISTE EN EL SISTEMA
     $(".alert").remove();
 
     var correo_electronico = $(this).val();
@@ -86,17 +74,13 @@ $("#registroCorreoElectronico").change(function() {
             
             //CONDICION QUE VERIFICA QUE SI EL CORREO ELECTRONICO EXISTE
             if(respuesta) {
-
                 $("#registroCorreoElectronico").val("");
-
                 $("#registroCorreoElectronico").parent().after(`
                     <div class="alert alert-warning">
                         <b>ERROR:</b>
                         El correo electronico ya existe, por favor introduzca otro diferente
-                    
                     </div>
                 `)
-
             }
 
         }
@@ -105,7 +89,7 @@ $("#registroCorreoElectronico").change(function() {
 
 });
 
-/* FORMULARIO MODAL: REGISTRO DE USUARIOS */
+/* FORMULARIO MODAL: REGISTRO DE USUARIOS: CONFIRMAR CONTRASENA */
 
 $("#registroConfirmarContrasena").change(function() {
 
@@ -171,7 +155,7 @@ $(document).on('click', '.eliminarUsuarios', function() {
 
 			let datos = new FormData();
 
-			datos.append("id_usuarios", id_usuarios);
+			datos.append("id_usuarios_eliminar", id_usuarios);
 
 			$.ajax({
 				url:url+"views/ajax/ajax_usuarios.php",
@@ -208,5 +192,111 @@ $(document).on('click', '.eliminarUsuarios', function() {
 	
 		 }
 	});
+
+});
+
+/* FORMULARIO MODAL: CONSULTA PARTICULAR DE DATOS: USUARIOS */
+
+$(document).on('click', '.consultaDatosUsuarios', function() {
+
+    let id_usuarios = $(this).attr('id_usuarios');
+
+    let datos = new FormData();
+
+	datos.append("id_usuarios_consultar", id_usuarios);
+
+    $.ajax({
+        url:url+"views/ajax/ajax_usuarios.php",
+        method:"POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        //dataType: "json",
+        success:function(respuesta) {
+
+            console.log(respuesta);
+
+            if(respuesta) {
+
+                let variable = JSON.parse(respuesta);
+                //console.log(variable);
+                $('#editarNombreCompleto').val(variable.nombre_completo);
+                $('#editarCorreoElectronico').val(variable.correo_electronico);
+                //$('#editarContrasena').val(variable.contrasena);
+                //$('#editarConfirmarContrasena').val(variable.confirmar_contrasena);
+                $('#editarFechaNacimiento').val(variable.fecha_nacimiento);
+                $('#editarFechaAlta').val(variable.fecha_alta);
+                $('#editarEstado').val(variable.estado);
+                $('#editarNivel').val(variable.nivel);
+                //$('#editarImagen').val(variable.imagen);
+
+            }
+
+        }
+    });
+
+});
+
+
+/* FORMULARIO MODAL: EDITAR USUARIOS */
+
+$(document).on('submit', '#formularioEditarUsuarios', function() {
+
+    let nombre_completo = $("#editarNombreCompleto").val();
+    let correo_electronico = $("#editarCorreoElectronico").val();
+	let contrasena  = $("#editarContrasena").val();
+    let confirmar_contrasena  = $("#editarConfirmarContrasena").val();
+    let fecha_nacimiento  = $("#editarFechaNacimiento").val();
+    let nivel = $("#editarNivel").val();
+    let imagen  = $("#editarImagen")[0].files[0];
+    let estado  = $("#editarEstado").val();
+    let fecha_alta  = $("#editarFechaAlta").val();
+
+    let datos = new FormData();
+
+    datos.append("editarNombreCompleto", nombre_completo);
+    datos.append("editarCorreoElectronico", correo_electronico);
+    datos.append("editarContrasena", contrasena);
+    datos.append("editarConfirmarContrasena", confirmar_contrasena);
+    datos.append("editarFechaNacimiento", fecha_nacimiento);
+    datos.append("editarNivel", nivel);
+    datos.append("editarImagen", imagen);
+    datos.append("editarEstado", estado);
+    datos.append("editarFechaAlta", fecha_alta);
+
+	$.ajax({
+
+		url:url+"views/ajax/ajax_usuarios.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+        beforeSend: function() {
+
+        	loading(true);
+
+        },
+        
+        success:function(respuesta) {
+        	
+            console.log("respuesta", respuesta);
+
+        	loading(false);
+
+            if(respuesta === "usuarios"){
+
+                window.location = url+"usuarios";
+
+            } else {
+
+                swal("¡Error!", "¡Error al actualiza los datos del usuario!", "error");
+
+            }
+
+        }
+
+    });
 
 });

@@ -13,6 +13,7 @@ class Usuarios {
         $datosUsuarios = $this->datosUsuarios;
         $controllerUsuarios = $this->controllerUsuarios;
         $respuesta = UsuariosController::$controllerUsuarios($datosUsuarios);
+        //echo json_encode($respuesta);
         echo $respuesta;
     }
 
@@ -21,7 +22,7 @@ class Usuarios {
 	public function ajaxValidarCorreoElectronico() {
 		$item = "correo_electronico";
 		$valor = $this->validarCorreoElectronico;
-		$respuesta = UsuariosController::ControllerConsultaUsuarios($item, $valor);
+		$respuesta = UsuariosController::ControllerConsultaGeneralUsuarios($item, $valor);
 		echo json_encode($respuesta);
 	}
 
@@ -50,9 +51,9 @@ if(isset($_POST['registroNombreCompleto'])) {
 }
 
 //CONDICION: ELIMINAR USUARIOS, SE UTILIZA EL ID Y SE ENVIA A CONTROLLER
-if(isset($_POST['id_usuarios'])) {
+if(isset($_POST['id_usuarios_eliminar'])) {
 
-    $datosUsuarios = $_POST['id_usuarios'];
+    $datosUsuarios = $_POST['id_usuarios_eliminar'];
 
     $i = new Usuarios();
     $i -> datosUsuarios = $datosUsuarios;
@@ -66,4 +67,38 @@ if(isset($_POST["validarCorreoElectronico"])) {
 	$v = new Usuarios();
 	$v -> validarCorreoElectronico = $_POST["validarCorreoElectronico"];
 	$v -> ajaxValidarCorreoElectronico();
+}
+
+//CONDICION: CONSULTA PARTICULAR DE DATOS SE ENVIA ID COMO PARAMETRO A CONTROLLER
+if(isset($_POST['id_usuarios_consultar'])) {
+
+    $datosUsuarios = $_POST['id_usuarios_consultar'];
+
+    $i = new Usuarios();
+    $i ->datosUsuarios = $datosUsuarios;
+    $i -> controllerUsuarios = "ControllerConsultaUsuarios";
+    $i -> funcionUsuarios();
+
+}
+
+//CONDICION: EDITAR USUARIOS
+if(isset($_POST['editarNombreCompleto'])) {
+
+    $datosUsuarios = array (
+        "nombre_completo"=>$_POST['editarNombreCompleto'],
+        "correo_electronico"=>$_POST['editarCorreoElectronico'],
+        "contrasena"=>$_POST['editarContrasena'],
+        "confirmar_contrasena"=>$_POST['editarConfirmarContrasena'],
+        "fecha_nacimiento"=>$_POST['editarFechaNacimiento'],
+        "nivel"=>$_POST['editarNivel'],
+        "imagen"=>$_FILES['editarImagen'],
+        "estado"=>$_POST['editarEstado'],
+        "fecha_alta"=>$_POST['editarFechaAlta']
+    );
+
+    $i = new Usuarios();
+    $i ->datosUsuarios = $datosUsuarios;
+    $i -> controllerUsuarios = "ControllerEditarUsuarios";
+    $i -> funcionUsuarios();
+
 }

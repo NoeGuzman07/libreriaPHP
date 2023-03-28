@@ -15,7 +15,8 @@ $v = "1";
     <meta name="theme-color" content="#000000">
     <meta name="msapplication-navbutton-color" content="#000000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="icon" sizes="192x192" href="<?php echo $url; ?>views/assets/css/img/favicon/favicon-192.png">
+    <link rel="shortcut icon" href="views/assets/img/e-sol-logo.png">
+    <!--<link rel="icon" sizes="192x192" href="<?php echo $url; ?>views/assets/css/img/favicon/favicon-192.png">-->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo $url; ?>views/assets/css/css/bootstrap/bootstrap.min.css">
     <!-- Bootstrap CSS -->
