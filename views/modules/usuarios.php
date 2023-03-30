@@ -8,11 +8,11 @@
 
 <!-- TITULO DEL MODULO: USUARIOS -->
 <div class="titulo-boton">
-	<h1 class="titulo-modulo">Gestion de Usuarios</h1>
+	<h1 class="titulo-modulo">Lista de usuarios</h1>
 </div>
 
 <!-- BOTON MODAL: REGISTRO DE USUARIOS -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registroUsuariosModal" data-whatever="@mdo">+ Registrar usuario</button><br>
+<button type="button" class="btn btn-primary registroUsuariosModel" data-toggle="modal" data-target="#registroUsuariosModal" data-whatever="@mdo">+ Agregar</button><br>
 
 <!-- FORMULARIO MODAL: REGISTROS DE USUARIOS -->
 <br><div class="modal fade" id="registroUsuariosModal" tabindex="-1" role="dialog" aria-labelledby="registroUsuariosModalLabel" aria-hidden="true">
@@ -58,7 +58,7 @@
 									<input type="date" class="form-control" id="registroFechaNacimiento" name="" required><br>
 								</div>
 							</div>
-							<div class="col-md-5">
+							<div hidden class="col-md-5">
 								<div class="form-group">
 									<label for="fecha_alta" class="col-form-label">Fecha de alta:</label>
 									<?php $fcha = date("Y-m-d");?>
@@ -70,7 +70,7 @@
 								<div class="form-group">
 									<label for="estado" class="col-form-label">Estado:&nbsp;&nbsp;</label>
 									<label class="switch">
-  										<input type="checkbox" lass="form-control" id="registroEstado" value="1">
+  										<input type="checkbox" lass="form-control" id="registroEstado">
   										<span class="slider"></span>
 									</label>
 								</div>
@@ -88,7 +88,8 @@
 							<div class="col-md-5">
 							<div class="form-group">
 								<label for="imagen">Insertar una imagen:</label>
-								<input type="file" id="registroImagen" accept="image/png, image/jpeg, image/jpg" name="">
+								<input type="file" id="registroImagen" accept="image/png, image/jpeg, image/jpg" name="" required>
+								<img id="registroImagen" width="20%" height="20%">
 						</div>
 						</div>
 					</div>
@@ -187,7 +188,7 @@
 										<input type="date" class="form-control" id="editarFechaNacimiento" name="" required><br>
 								</div>
 							</div>
-							<div class="col-md-5">
+							<div hidden class="col-md-5">
 								<div class="form-group">
 									<label for="fecha_alta" class="col-form-label">Fecha de alta:</label>
 										<?php $fcha = date("Y-m-d");?>
@@ -204,9 +205,9 @@
 							<div class="col-md-5">
 								<div class="form-group">
 									<label for="estado" class="col-form-label">Estado:&nbsp;&nbsp;</label>
-									<label class="switch">
+									<label class="switch_editar">
 										<input type="checkbox" class="form-control" id="editarEstado">
-										<span class="slider"></span>
+										<span class="slider_editar"></span>
 									</label>
 								</div>
 							</div>

@@ -10,7 +10,7 @@ $(document).on('submit', '#formularioRegistroUsuarios', function() {
     let fecha_nacimiento  = $("#registroFechaNacimiento").val();
     let nivel = $("#registroNivel").val();
     let imagen  = $("#registroImagen")[0].files[0];
-    let estado  = $("#registroEstado").val();
+    let estado  = $("#registroEstado").prop('checked') ? 0 : 1;
     let fecha_alta  = $("#registroFechaAlta").val();
 
     let datos = new FormData();
@@ -122,22 +122,6 @@ $("#registroConfirmarContrasena").change(function() {
 
 });
 
-/* ESTADO DEL USUARIO: FUNCION PARA DETERINAR SI PUEDE ACCEDER O NO AL SISTEMA */
-
-$("#registroEstado").change(function() {
-
-    let estado  = $("#registroEstado").val();
-    var datos = new FormData();
-    datos.append("registroEstado", estado);
-
-    if($('#registroEstado').is(':checked') ) {
-        $("#registroEstado").val('0');
-    } else {
-        $("#registroEstado").val('1');
-    }
-
-});
-
 /* ELIMINAR USUARIO DEL SISTEMA */
 $(document).on('click', '.eliminarUsuarios', function() {
 
@@ -221,23 +205,28 @@ $(document).on('click', '.consultaDatosUsuarios', function() {
 
                 let variable = JSON.parse(respuesta);
                 //console.log(variable);
+                
                 $('#editarNombreCompleto').val(variable.nombre_completo);
                 $('#editarCorreoElectronico').val(variable.correo_electronico);
                 //$('#editarContrasena').val(variable.contrasena);
                 //$('#editarConfirmarContrasena').val(variable.confirmar_contrasena);
                 $('#editarFechaNacimiento').val(variable.fecha_nacimiento);
-                $('#editarFechaAlta').val(variable.fecha_alta);
-                $('#editarEstado').val(variable.estado);
                 $('#editarNivel').val(variable.nivel);
                 //$('#editarImagen').val(variable.imagen);
+                if(variable.estado==0) {
+                    $("#editarEstado").prop('checked', true);
+                } else {
+                    $("#editarEstado").prop('checked', false);
+                }
+                //$('#editarFechaAlta').val(variable.fecha_alta);
 
             }
 
         }
+        
     });
 
 });
-
 
 /* FORMULARIO MODAL: EDITAR USUARIOS */
 

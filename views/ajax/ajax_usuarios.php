@@ -28,6 +28,15 @@ class Usuarios {
 
 }
 
+//CONDICION: VALIDAR CORREO EXISTENTE
+if(isset($_POST["validarCorreoElectronico"])) {
+
+	$v = new Usuarios();
+	$v -> validarCorreoElectronico = $_POST["validarCorreoElectronico"];
+	$v -> ajaxValidarCorreoElectronico();
+    
+}
+
 //CONDICION: REGISTRO DE USUARIOS
 if(isset($_POST['registroNombreCompleto'])) {
 
@@ -48,25 +57,6 @@ if(isset($_POST['registroNombreCompleto'])) {
     $i -> controllerUsuarios = "ControllerRegistroUsuarios";
     $i -> funcionUsuarios();
 
-}
-
-//CONDICION: ELIMINAR USUARIOS, SE UTILIZA EL ID Y SE ENVIA A CONTROLLER
-if(isset($_POST['id_usuarios_eliminar'])) {
-
-    $datosUsuarios = $_POST['id_usuarios_eliminar'];
-
-    $i = new Usuarios();
-    $i -> datosUsuarios = $datosUsuarios;
-    $i -> controllerUsuarios = "ControllerEliminarUsuarios";
-    $i -> funcionUsuarios();
-
-}
-
-//CONDICION: VALIDAR CORREO EXISTENTE
-if(isset($_POST["validarCorreoElectronico"])) {
-	$v = new Usuarios();
-	$v -> validarCorreoElectronico = $_POST["validarCorreoElectronico"];
-	$v -> ajaxValidarCorreoElectronico();
 }
 
 //CONDICION: CONSULTA PARTICULAR DE DATOS SE ENVIA ID COMO PARAMETRO A CONTROLLER
@@ -99,6 +89,18 @@ if(isset($_POST['editarNombreCompleto'])) {
     $i = new Usuarios();
     $i ->datosUsuarios = $datosUsuarios;
     $i -> controllerUsuarios = "ControllerEditarUsuarios";
+    $i -> funcionUsuarios();
+
+}
+
+//CONDICION: ELIMINAR USUARIOS, SE UTILIZA EL ID Y SE ENVIA A CONTROLLER
+if(isset($_POST['id_usuarios_eliminar'])) {
+
+    $datosUsuarios = $_POST['id_usuarios_eliminar'];
+
+    $i = new Usuarios();
+    $i -> datosUsuarios = $datosUsuarios;
+    $i -> controllerUsuarios = "ControllerEliminarUsuarios";
     $i -> funcionUsuarios();
 
 }
