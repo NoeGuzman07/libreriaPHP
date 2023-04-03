@@ -83,8 +83,8 @@ if(isset($_POST['editarNombreCompleto'])) {
         "confirmar_contrasena"=>$_POST['contrasenaActual'],
         "fecha_nacimiento"=>$_POST['editarFechaNacimiento'],
         "nivel"=>$_POST['editarNivel'],
-        "imagen"=>$_FILES['editarImagen'],
-        "imagen_actual"=>$_FILES['imagenActual'],
+        "imagen"=>isset($_FILES['editarImagen']) ? $_FILES['editarImagen'] : null,
+        "imagen_actual"=>$_POST['imagenActual'],
         "estado"=>$_POST['editarEstado'],
         "fecha_alta"=>$_POST['editarFechaAlta']
     );

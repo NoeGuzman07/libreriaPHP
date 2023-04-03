@@ -180,7 +180,7 @@
 			<div class="modal-body">
 
 				<!-- INICIO DEL FORMULARIO: EDITAR DATOS DE USUARIOS -->
-				<form id="formularioEditarUsuarios" onsubmit="return false;">
+				<form id="formularioEditarUsuarios" enctype="multipart/form-data" onsubmit="return false;">
 
 					<div class="form-row row">
 
