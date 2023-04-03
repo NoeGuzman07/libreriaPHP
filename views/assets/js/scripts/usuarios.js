@@ -122,6 +122,173 @@ $("#registroConfirmarContrasena").change(function() {
 
 });
 
+/* FORMULARIO MODAL: EDICION DE USUARIOS: CONFIRMAR CONTRASENA */
+
+$("#editarConfirmarContrasena").change(function() {
+
+    //COMANDO QUE AYUDA A LIMPIAR EL MENSAJE QUE SE MUESTRA CUANDO 
+    //UN CORREO ELECTRONICO YA EXISTE EN EL SISTEMA
+    $(".alert").remove();
+
+    let contrasena  = $("#editarContrasena").val();
+    let confirmar_contrasena  = $("#editarConfirmarContrasena").val();
+    var datos = new FormData();
+    datos.append("editarContrasena", contrasena);
+    datos.append("editarConfirmarContrasena", confirmar_contrasena);
+
+    //CONDICION QUE PERMITE VERIFICAR SI LA CONTRASENA Y SU CONFIRMACION NO COINCIDEN
+    //DURANTE EL REGISTRO DE USUARIOS
+    if(confirmar_contrasena!=contrasena) {
+
+        $("#editarContrasena").val("");
+        $("#editarConfirmarContrasena").val("");
+
+        $("#editarConfirmarContrasena").parent().after(`
+            <div class="alert alert-warning">
+                <b>ERROR:</b>
+                Las contrasenas no coinciden, intente de nuevo
+            
+            </div>
+        `)
+
+    }
+
+});
+
+/* FORMULARIO MODAL: CONSULTA PARTICULAR DE DATOS: USUARIOS */
+
+$(document).on('click', '.consultaDatosUsuarios', function() {
+
+    let id_usuarios = $(this).attr('id_usuarios');
+
+    let datos = new FormData();
+
+	datos.append("id_usuarios_consultar", id_usuarios);
+
+    $.ajax({
+        url:url+"views/ajax/ajax_usuarios.php",
+        method:"POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        //dataType: "json",
+        success:function(respuesta) {
+
+            //console.log(respuesta);
+
+            if(respuesta) {
+
+                let variable = JSON.parse(respuesta);
+                //console.log(variable);
+                
+                $("#IdUsuarios").val(variable.id_usuarios);
+                $('#editarNombreCompleto').val(variable.nombre_completo);
+                $('#editarCorreoElectronico').val(variable.correo_electronico);
+
+                $("#contrasenaActual").val(variable.contrasena);
+
+                $('#editarFechaNacimiento').val(variable.fecha_nacimiento);
+                $('#editarNivel').val(variable.nivel);
+
+                $("#imagenActual").val(variable.imagen);
+
+                //$('#editarContrasena').val(variable.contrasena);
+                //$('#editarConfirmarContrasena').val(variable.confirmar_contrasena);
+                //$('#editarImagen').val(variable.imagen);
+                //$('#editarFechaAlta').val(variable.fecha_alta);
+                
+                if(variable.estado==0) {
+                    $("#editarEstado").prop('checked', true);
+                } else {
+                    $("#editarEstado").prop('checked', false);
+                }
+
+            }
+
+        }
+        
+    });
+
+});
+
+/* FORMULARIO MODAL: EDITAR USUARIOS */
+
+$(document).on('submit', '#formularioEditarUsuarios', function() {
+
+    let id_usuarios = $("#IdUsuarios").val();
+    let nombre_completo = $("#editarNombreCompleto").val();
+    let correo_electronico = $("#editarCorreoElectronico").val();
+
+	let contrasena  = $("#editarContrasena").val();
+    let contrasena_actual = $("#contrasenaActual").val();
+    let confirmar_contrasena  = $("#editarConfirmarContrasena").val();
+    
+    let fecha_nacimiento  = $("#editarFechaNacimiento").val();
+    let nivel = $("#editarNivel").val();
+    
+    let imagen = $("#editarImagen")[0].files[0];
+    let imagen_actual = $("#imagenActual").val();
+    
+    let estado  = $("#editarEstado").prop('checked') ? 0 : 1;
+    let fecha_alta  = $("#editarFechaAlta").val();
+
+    let datos = new FormData();
+
+    datos.append("id_usuarios_editar", id_usuarios);
+
+    datos.append("editarNombreCompleto", nombre_completo);
+    datos.append("editarCorreoElectronico", correo_electronico);
+    
+    datos.append("editarContrasena", contrasena);
+    datos.append("contrasenaActual", contrasena_actual);
+    datos.append("editarConfirmarContrasena", confirmar_contrasena);
+    
+    datos.append("editarFechaNacimiento", fecha_nacimiento);
+    datos.append("editarNivel", nivel);
+    
+    datos.append("editarImagen", imagen);
+    datos.append("imagenActual", imagen_actual);
+    
+    datos.append("editarEstado", estado);
+    datos.append("editarFechaAlta", fecha_alta);
+
+	$.ajax({
+
+		url:url+"views/ajax/ajax_usuarios.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+        beforeSend: function() {
+
+        	loading(true);
+
+        },
+        
+        success:function(respuesta) {
+
+            console.log("respuesta", respuesta);
+
+        	loading(false);
+
+            if(respuesta === "usuarios") {
+
+                window.location = url+"usuarios";
+
+            } else {
+
+                swal("¡Error!", "¡Error al actualiza los datos del usuario!", "error");
+
+            }
+
+        }
+
+    });
+
+});
+
 /* ELIMINAR USUARIO DEL SISTEMA */
 $(document).on('click', '.eliminarUsuarios', function() {
 
@@ -176,116 +343,5 @@ $(document).on('click', '.eliminarUsuarios', function() {
 	
 		 }
 	});
-
-});
-
-/* FORMULARIO MODAL: CONSULTA PARTICULAR DE DATOS: USUARIOS */
-
-$(document).on('click', '.consultaDatosUsuarios', function() {
-
-    let id_usuarios = $(this).attr('id_usuarios');
-
-    let datos = new FormData();
-
-	datos.append("id_usuarios_consultar", id_usuarios);
-
-    $.ajax({
-        url:url+"views/ajax/ajax_usuarios.php",
-        method:"POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        //dataType: "json",
-        success:function(respuesta) {
-
-            console.log(respuesta);
-
-            if(respuesta) {
-
-                let variable = JSON.parse(respuesta);
-                //console.log(variable);
-                
-                $('#editarNombreCompleto').val(variable.nombre_completo);
-                $('#editarCorreoElectronico').val(variable.correo_electronico);
-                //$('#editarContrasena').val(variable.contrasena);
-                //$('#editarConfirmarContrasena').val(variable.confirmar_contrasena);
-                $('#editarFechaNacimiento').val(variable.fecha_nacimiento);
-                $('#editarNivel').val(variable.nivel);
-                //$('#editarImagen').val(variable.imagen);
-                if(variable.estado==0) {
-                    $("#editarEstado").prop('checked', true);
-                } else {
-                    $("#editarEstado").prop('checked', false);
-                }
-                //$('#editarFechaAlta').val(variable.fecha_alta);
-
-            }
-
-        }
-        
-    });
-
-});
-
-/* FORMULARIO MODAL: EDITAR USUARIOS */
-
-$(document).on('submit', '#formularioEditarUsuarios', function() {
-
-    let nombre_completo = $("#editarNombreCompleto").val();
-    let correo_electronico = $("#editarCorreoElectronico").val();
-	let contrasena  = $("#editarContrasena").val();
-    let confirmar_contrasena  = $("#editarConfirmarContrasena").val();
-    let fecha_nacimiento  = $("#editarFechaNacimiento").val();
-    let nivel = $("#editarNivel").val();
-    let imagen  = $("#editarImagen")[0].files[0];
-    let estado  = $("#editarEstado").val();
-    let fecha_alta  = $("#editarFechaAlta").val();
-
-    let datos = new FormData();
-
-    datos.append("editarNombreCompleto", nombre_completo);
-    datos.append("editarCorreoElectronico", correo_electronico);
-    datos.append("editarContrasena", contrasena);
-    datos.append("editarConfirmarContrasena", confirmar_contrasena);
-    datos.append("editarFechaNacimiento", fecha_nacimiento);
-    datos.append("editarNivel", nivel);
-    datos.append("editarImagen", imagen);
-    datos.append("editarEstado", estado);
-    datos.append("editarFechaAlta", fecha_alta);
-
-	$.ajax({
-
-		url:url+"views/ajax/ajax_usuarios.php",
-		method: "POST",
-		data: datos,
-		cache: false,
-		contentType: false,
-		processData: false,
-        beforeSend: function() {
-
-        	loading(true);
-
-        },
-        
-        success:function(respuesta) {
-        	
-            console.log("respuesta", respuesta);
-
-        	loading(false);
-
-            if(respuesta === "usuarios"){
-
-                window.location = url+"usuarios";
-
-            } else {
-
-                swal("¡Error!", "¡Error al actualiza los datos del usuario!", "error");
-
-            }
-
-        }
-
-    });
 
 });

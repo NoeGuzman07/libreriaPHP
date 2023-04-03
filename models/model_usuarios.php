@@ -54,9 +54,10 @@ class UsuariosModel extends Conexion {
 	}
 
 	//MODELO: EDITAR DATOS USUARIOS
-	static public function modelEditarUsuarios($id, $datosModel) {
+	static public function modelEditarUsuarios($tabla, $datosModel) {
 
-		$stmt = Conexion::conectar()->prepare("UPDATE SET nombre_completo=:nombre_completo, correo_electronico=:correo_electronico, contrasena=:contrasena, confirmar_contrasena=:confirmar_contrasena, fecha_nacimiento=:fecha_nacimiento, nivel=:nivel, imagen=:imagen WHERE id_usuarios = :id_usuarios");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre_completo=:nombre_completo, correo_electronico=:correo_electronico, contrasena=:contrasena, confirmar_contrasena=:confirmar_contrasena, fecha_nacimiento=:fecha_nacimiento, nivel=:nivel, imagen=:imagen, estado=:estado, fecha_alta=:fecha_alta WHERE id_usuarios = :id_usuarios");
+		
 		$stmt->bindParam(":nombre_completo", $datosModel["nombre_completo"], PDO::PARAM_STR);
 		$stmt->bindParam(":correo_electronico", $datosModel["correo_electronico"], PDO::PARAM_STR);
 		$stmt->bindParam(":contrasena", $datosModel["contrasena"], PDO::PARAM_STR);
@@ -65,7 +66,8 @@ class UsuariosModel extends Conexion {
 		$stmt->bindParam(":nivel", $datosModel["nivel"], PDO::PARAM_STR);
 		$stmt->bindParam(":imagen", $datosModel["imagen"], PDO::PARAM_STR);
 		$stmt->bindParam(":estado", $datosModel["estado"], PDO::PARAM_INT);
-		$stmt->bindParam(":id_usuarios", $id, PDO::PARAM_INT);
+		$stmt->bindParam(":fecha_alta", $datosModel["fecha_alta"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_usuarios", $datosModel["id_usuarios"], PDO::PARAM_INT);
 
 		if ($stmt->execute()) {
             return "ok";

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once "../../controllers/controller_usuarios.php";
 require_once "../../models/model_usuarios.php";
@@ -75,21 +75,24 @@ if(isset($_POST['id_usuarios_consultar'])) {
 if(isset($_POST['editarNombreCompleto'])) {
 
     $datosUsuarios = array (
+        "id_usuarios"=>$_POST['id_usuarios_editar'],
         "nombre_completo"=>$_POST['editarNombreCompleto'],
         "correo_electronico"=>$_POST['editarCorreoElectronico'],
         "contrasena"=>$_POST['editarContrasena'],
-        "confirmar_contrasena"=>$_POST['editarConfirmarContrasena'],
+        "contrasena_actual"=>$_POST['contrasenaActual'],
+        "confirmar_contrasena"=>$_POST['contrasenaActual'],
         "fecha_nacimiento"=>$_POST['editarFechaNacimiento'],
         "nivel"=>$_POST['editarNivel'],
         "imagen"=>$_FILES['editarImagen'],
+        "imagen_actual"=>$_FILES['imagenActual'],
         "estado"=>$_POST['editarEstado'],
         "fecha_alta"=>$_POST['editarFechaAlta']
     );
 
-    $i = new Usuarios();
-    $i ->datosUsuarios = $datosUsuarios;
-    $i -> controllerUsuarios = "ControllerEditarUsuarios";
-    $i -> funcionUsuarios();
+    $b = new Usuarios();
+    $b ->datosUsuarios = $datosUsuarios;
+    $b -> controllerUsuarios = "ControllerEditarUsuarios";
+    $b -> funcionUsuarios();
 
 }
 
