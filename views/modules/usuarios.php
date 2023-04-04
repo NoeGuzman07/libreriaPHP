@@ -153,6 +153,7 @@
 
 						<!-- BOTON: ELIMINAR USUARIOS DEL SISTEMA -->
 						<button id_usuarios="<?php echo $value["id_usuarios"]; ?>" class="eliminarUsuarios btn btn-danger" title="Eliminar usuario"><i class="fas fa-trash-alt"></i></button>
+					
 					</div>
 				</td>
 				<td><img src="<?php echo $value["imagen"]; ?>" width="20%" height="20%"></td>

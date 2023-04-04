@@ -7,26 +7,26 @@
 
             if(isset($datosController["nombre_completo"])) {
 
-                    $encriptarContrasena = crypt($datosController["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-                    $encriptarConfirmarContrasena = crypt($datosController["confirmar_contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                $encriptarContrasena = crypt($datosController["contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                $encriptarConfirmarContrasena = crypt($datosController["confirmar_contrasena"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
                     
-                    $datos = array ("nombre_completo" => $datosController["nombre_completo"],
-                                    "correo_electronico" => $datosController["correo_electronico"],
-                                    "contrasena" => $encriptarContrasena,
-                                    "confirmar_contrasena" => $encriptarConfirmarContrasena,
-                                    "fecha_nacimiento" => $datosController["fecha_nacimiento"],
-                                    "nivel" => $datosController["nivel"],
-                                    "imagen" => GeneralController::subirImagen($datosController["imagen"], "usuarios_imagenes", "usuarios"),
-                                    "estado" => $datosController["estado"],
-                                    "fecha_alta" => $datosController["fecha_alta"]);
+                $datos = array ("nombre_completo" => $datosController["nombre_completo"],
+                                "correo_electronico" => $datosController["correo_electronico"],
+                                "contrasena" => $encriptarContrasena,
+                                "confirmar_contrasena" => $encriptarConfirmarContrasena,
+                                "fecha_nacimiento" => $datosController["fecha_nacimiento"],
+                                "nivel" => $datosController["nivel"],
+                                "imagen" => GeneralController::subirImagen($datosController["imagen"], "usuarios_imagenes", "usuarios"),
+                                "estado" => $datosController["estado"],
+                                "fecha_alta" => $datosController["fecha_alta"]);
 
-                    $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
+                $respuesta = UsuariosModel::modelRegistroUsuarios($datos);
 
-                    if($respuesta) {
-                        echo 'usuarios';
-                    } else {
-                        echo 'error';
-                    }
+                if($respuesta) {
+                    echo 'usuarios';
+                } else {
+                    echo 'error';
+                }
 
             } else {
                 echo 'error';

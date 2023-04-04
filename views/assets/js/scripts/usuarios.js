@@ -122,39 +122,6 @@ $("#registroConfirmarContrasena").change(function() {
 
 });
 
-/* FORMULARIO MODAL: EDICION DE USUARIOS: CONFIRMAR CONTRASENA */
-
-$("#editarConfirmarContrasena").change(function() {
-
-    //COMANDO QUE AYUDA A LIMPIAR EL MENSAJE QUE SE MUESTRA CUANDO 
-    //UN CORREO ELECTRONICO YA EXISTE EN EL SISTEMA
-    $(".alert").remove();
-
-    let contrasena  = $("#editarContrasena").val();
-    let confirmar_contrasena  = $("#editarConfirmarContrasena").val();
-    var datos = new FormData();
-    datos.append("editarContrasena", contrasena);
-    datos.append("editarConfirmarContrasena", confirmar_contrasena);
-
-    //CONDICION QUE PERMITE VERIFICAR SI LA CONTRASENA Y SU CONFIRMACION NO COINCIDEN
-    //DURANTE EL REGISTRO DE USUARIOS
-    if(confirmar_contrasena!=contrasena) {
-
-        $("#editarContrasena").val("");
-        $("#editarConfirmarContrasena").val("");
-
-        $("#editarConfirmarContrasena").parent().after(`
-            <div class="alert alert-warning">
-                <b>ERROR:</b>
-                Las contrasenas no coinciden, intente de nuevo
-            
-            </div>
-        `)
-
-    }
-
-});
-
 /* FORMULARIO MODAL: CONSULTA PARTICULAR DE DATOS: USUARIOS */
 
 $(document).on('click', '.consultaDatosUsuarios', function() {
@@ -289,6 +256,39 @@ $(document).on('submit', '#formularioEditarUsuarios', function() {
 
 });
 
+/* FORMULARIO MODAL: EDICION DE USUARIOS: CONFIRMAR CONTRASENA */
+
+$("#editarConfirmarContrasena").change(function() {
+
+    //COMANDO QUE AYUDA A LIMPIAR EL MENSAJE QUE SE MUESTRA CUANDO 
+    //UN CORREO ELECTRONICO YA EXISTE EN EL SISTEMA
+    $(".alert").remove();
+
+    let contrasena  = $("#editarContrasena").val();
+    let confirmar_contrasena  = $("#editarConfirmarContrasena").val();
+    var datos = new FormData();
+    datos.append("editarContrasena", contrasena);
+    datos.append("editarConfirmarContrasena", confirmar_contrasena);
+
+    //CONDICION QUE PERMITE VERIFICAR SI LA CONTRASENA Y SU CONFIRMACION NO COINCIDEN
+    //DURANTE EL REGISTRO DE USUARIOS
+    if(confirmar_contrasena!=contrasena) {
+
+        $("#editarContrasena").val("");
+        $("#editarConfirmarContrasena").val("");
+
+        $("#editarConfirmarContrasena").parent().after(`
+            <div class="alert alert-warning">
+                <b>ERROR:</b>
+                Las contrasenas no coinciden, intente de nuevo
+            
+            </div>
+        `)
+
+    }
+
+});
+
 /* ELIMINAR USUARIO DEL SISTEMA */
 $(document).on('click', '.eliminarUsuarios', function() {
 
@@ -342,6 +342,7 @@ $(document).on('click', '.eliminarUsuarios', function() {
 		 }else{
 	
 		 }
-	});
+	
+    });
 
 });
