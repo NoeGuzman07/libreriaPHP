@@ -1,18 +1,16 @@
-<!-- TITULO DEL MODULO: LIBROS -->
+<!-- Título del módulo -->
 <div class="titulo-boton">
-	<h1 class="titulo-modulo">Libros</h1>
+    <h1 class="titulo-modulo">Libros</h1>
+    <button class="btn btn-agregar con-icono" id="agregar_libros">Agregar</button>
 </div>
-<!-- TITULO DEL MODULO: LIBROS -->
+<!-- Título del módulo -->
 
-<!-- BOTON MODAL: REGISTRO DE USUARIOS -->
-<button class="btn btn-agregar con-icono float-right" id="agregar_libros">Agregar</button><br>
-<!-- BOTON MODAL: REGISTRO DE USUARIOS -->
+<h6 class="subtitulo">Tabla de libros</h6>
 
-<p>Lista de libros</p>
-
-<!-- FORMULARIO MODAL: REGISTROS DE LIBROS -->
-<div class="modal fade" id="modal_registrar_usuarios" data-backdrop="static" tabindex="-1">
-	<div class="modal-dialog modal-lg">
+<!-- Modal para registrar libros -->
+<div class="modal fade" id="modal_registrar_libros" data-backdrop="static" tabindex="-1">
+	
+    <div class="modal-dialog modal-lg">
         
 		<div class="modal-content">
             
@@ -31,13 +29,13 @@
                     
 					<div class="row">
 
-						<div class="col-md-4">
+                        <div class="col-md-4">
                         	<div class="form-group">
                             	<label for="">Categoría:</label>
                                 <select class="form-control input_libros" id="categoria_libros" required>
                                     <option value="" selected>Selecciona una opción</option>
-                                    <option value="Administrador">Comic</option>
-									<option value="Administrador">Novelas</option>
+                                    <option value="Comic">Comic</option>
+									<option value="Novela">Novela</option>
                                 </select>
                             </div>
                         </div>
@@ -61,8 +59,8 @@
                             	<label for="">Autor:</label>
                                 <select class="form-control input_libros" id="autor_libros" required>
                                     <option value="" selected>Seleccione/Ingrese una opción</option>
-                                    <option value="Administrador">Stan Lee</option>
-									<option value="Administrador">Gabriel Garcia Marquez</option>
+                                    <option value="Stan Lee">Stan Lee</option>
+									<option value="Gabriel Garcia Marquez">Gabriel Garcia Marquez</option>
                                 </select>
                             </div>
                         </div>
@@ -85,7 +83,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Precio:</label>
-                                <input type="number" class="form-control input_libros" id="precio_libros" required>
+                                <input type="number" class="form-control input_libros validar0" id="precio_libros" required>
                                 <div class="invalid-feedback" style="display: none;"></div>
                             </div>
                         </div>
@@ -93,7 +91,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Stock Actual (opcional):</label>
-                                <input type="number" class="form-control input_libros" id="stock_actual_libros" required>
+                                <input type="number" class="form-control input_libros validar0" id="stock_actual_libros">
                             </div>                            
                         </div>
                         
@@ -101,7 +99,12 @@
 
                     <div class="row">
 
-                        <!-- Colocar Espacio de texto para la descripcion-->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Descripción:</label>
+                                <textarea class="form-control input_libros" id="descripcion_libros"  rows="4" cols="100" style="min-width: 100%; resize: none;" required>Write something here</textarea>
+                            </div>                            
+                        </div>
 
                     </div>
 
@@ -110,28 +113,17 @@
 
                         <div class="col-12">
 
-                            <div class="accordion" id="accordion">
-
-                                <div class="card">
-                                    
-									<div class="row p-3">
-
-                                        <div class="col-md-6">
-                                            <label for="">Imagen: (Opcional)</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input input_libros imagenPrevisualizar validarImagen" id="input_imagen" lang="esp">
-                                                <label class="custom-file-label" for="">Seleccionar archivo</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 text-center mt-3">
-                                            <img src="<?= $url; ?>views/assets/img/usuario_default.png" style="width:120px;heigth:120px;" id="imagen_previsualizar">
-                                        </div>
-
+                            <div class="row p-3">
+                                <div class="col-md-6">
+                                    <label for="">Imagen: (Opcional)</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input input_libros imagenPrevisualizar validarImagen" id="input_imagen" lang="esp">
+                                        <label class="custom-file-label" for="">Seleccionar archivo</label>
                                     </div>
-
                                 </div>
-
+                                <div class="col-md-6 text-center mt-3">
+                                    <img src="<?= $url; ?>views/assets/img/usuario_default.png" style="width:120px;heigth:120px;" id="imagen_previsualizar">
+                                </div>
                             </div>
 
                         </div>
@@ -141,8 +133,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-cancelar" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-aceptar submit-carga">Registrar</button>
+                    <button type="button" class="btn btn-cancelar" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-aceptar submit-carga">Agregar</button>
                 </div>
 
             </form>
@@ -153,4 +145,4 @@
 
 </div>
 
-<!-- FORMULARIO MODAL: REGISTROS DE LIBROS -->
+<!-- Modal para registrar libros -->
