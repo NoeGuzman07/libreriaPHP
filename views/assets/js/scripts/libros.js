@@ -79,34 +79,6 @@ $(document).on("submit","#form_libros",function() {
 
 });
 
-/*====================================================
-=            VALIDAR IMAGEN PREVISUALIZAR            =
-====================================================*/
-
-$(document).on('change', '.imagenPrevisualizar', function(){
-
-	let imagen = this.files[0];
-    let input = $(this);
-
-	if((imagen.type == "image/jpeg" || imagen.type == "image/png")){
-
-		let datosImagen = new FileReader;
-        datosImagen.readAsDataURL(imagen);
-
-        $(datosImagen).on("load", function(event){
-
-            let rutaImagen = event.target.result;
-
-            input.parent().prev().attr("src", rutaImagen);
-
-        });
-
-	}
-
-});
-
-/*=====  End of VALIDAR IMAGEN PREVISUALIZAR  ======*/
-
 /* VALIDAR IMAGENES */
 
 $(document).on('change', '.validarImagen', function(){
@@ -122,6 +94,34 @@ $(document).on('change', '.validarImagen', function(){
 });
 
 /* End of VALIDAR IMAGENES */
+
+/*====================================================
+=            VALIDAR IMAGEN PREVISUALIZAR            =
+====================================================*/
+
+$(document).on('change', '.imagenPrevisualizar', function(){
+
+	let imagen = this.files[0];
+	let input = $(this);
+
+	if((imagen.type == "image/jpeg" || imagen.type == "image/png")){
+
+		let datosImagen = new FileReader;
+        datosImagen.readAsDataURL(imagen);
+
+        $(datosImagen).on("load", function(event){
+
+            let rutaImagen = event.target.result;
+
+			$("#imagen_previsualizar").attr("src", rutaImagen);
+
+        });
+
+	}
+
+});
+
+/*=====  End of VALIDAR IMAGEN PREVISUALIZAR  ======*/
 
 /* VALIDAR 0 */
 
