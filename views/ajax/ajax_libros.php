@@ -7,7 +7,7 @@
 
     class Libros {
 
-        //FUNCION QUE PERMITE LLAMAR A LOS METODOS DEFINIDOS EN CONTROLLER
+        //Funcion que permite llamar a los metodos definidos en la capa Controller
         public $datos;
         public $controller;
         public function funcionLibros() {
@@ -18,15 +18,31 @@
 
         }
 
+        //Funcion para validar Codigos de libros existentes de libros
+        public $validarCodigoLibros;
+	    public function ajaxValidarCodigoLibros() {
+		    $item = "codigo";
+		    $valor = $this->validarCodigoLibros;
+		    $respuesta = LibrosController::buscarColumnaLibrosController($item, $valor);
+		    echo json_encode($respuesta);
+	    }
+
     }
 
     session_start();
 
+    //Condición: Validar codigo de libro existente
+    if(isset($_POST["validarCodigoLibros"])) {
+        $v = new Libros();
+	    $v -> validarCodigoLibros = $_POST["validarCodigoLibros"];
+	    $v -> ajaxValidarCodigoLibros();
+    }
+
+    //Condicion: Registro de libros
     if(isset($_SESSION['iniciarSesion']) && $_SESSION['iniciarSesion'] == 'ok') {
-
-        //CONDICION-PETICION: REGISTRO DE LIBROS
+        
         if(isset($_POST['nombre_libros'])) {
-
+            
             $datos = array (
                 "id_libros" => isset($_POST['id_libros']) ? $_POST['id_libros'] : false,
                 "categoria"=>$_POST['categoria_libros'],
@@ -43,15 +59,11 @@
             $funcion = "insertarLibrosController";
 
         } else if(isset($_POST['id_libros_buscar'])) {
-
-            //INSTRUCCION PARA BUSCAR UN LIBRO EN PARTICULAR A PARTIR DE SU ID
+            //Instruccion para buscar un libro en particular, esto a partir de su ID
             $datos = $_POST['id_libros_buscar'];
             $funcion = "buscarLibrosController";
-        
         } else {
-
             $datos = false;
-
         }
 
         if($datos) {

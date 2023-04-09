@@ -2,58 +2,32 @@
 
     class LibrosController {
 
-    /* MOSTRAR LIBROS */
-    /* Funcion para obtener los libros de la base de datos */
-    
-    static public function obtenerLibrosController(){
-        return LibrosModel::obtenerLibrosModel();
-    }
-
-    /* MOSTRAR LIBROS */
-
-    /* REGISTRAR LIBROS */
-    /* Funcion para validar un LIBRO y registrarlo en la base de datos */
-
+    /* Funcion para validar un LIBRO y Insertarlo-Registrarlo en la base de datos */
     static public function insertarLibrosController($datos) {
-
-        //VERIFICACION DE ID EXISTENTE
+        //Verificacion de ID existente
         if($datos['id_libros']) {
-
-            //REGISTRAMOS LOS CAMBIOS EN LA BASE DE DATOS
+            //Si se encuentra el ID, se realizara cambios del libro en la base de datos
             LibrosController::editarLibrosController($datos);
-
         } else {
-
-            //REALIZAMOS EL REGISTRO DEL LIBRO EN LA BASE DE DATOS
+            //Cuando No se encuentra un ID, se realizara el registro del libro en la base de datos
             $datos['id_libros'] = LibrosModel::insertarLibrosModel($datos);
-
         }
-
-        //BUSCAMOS AL LIBRO PARA OBTENER EL NOMBRE DEL ARCHIVO DE LA IMAGEN ACTUAL
+        //Buscamos al libro para obtener el nombre del archivo de la imagen actual
         $libros = LibrosModel::buscarLibrosModel($datos['id_libros']);
-
-        if($datos['imagen']){
-        
-            //VERIFICAMOS SI LA IMAGEN DEL LIBRO EXISTE PARA PODER ELIMINARLA
+        if($datos['imagen']) {
+            //Si se encuentra la imagen, verificamos si existe la imagen para poder eliminarla-remplazarla
             if($libros['imagen']!=""&&file_exists("../../".$libros['imagen'])&&$libros['imagen']!="views/assets/img/usuario_default.png") unlink("../../".$libros['imagen']);
-
-            //PROCEDEMOS A ALMACENAR LA IMAGEN AL SERVIDOR
+            //Procedemos a almacenar la imagen al servidor
             $nombre_imagen = "imagen_libros_".$datos['id_libros'];
             $datos['imagen'] = GeneralController::subirImagen($datos['imagen'],"libros",$nombre_imagen);
-
-            //PROCEDEMOS A EDITAR LA IMAGEN DEL LIBRO
+            //Procedemos al editar la imagen del libro
             LibrosModel::editarImagenLibrosModel($datos);
-        
         }
-
         return "success";
-
     }
 
-    /* REGISTRAR LIBROS */
-
-    /* BUSCAR UN LIBRO EN PARTICULAR */
-    /* REALIZAMOS LA BUSQUEDA DE UN LIBRO EN PARTICULAR EN LA BASE DE DATOS CON SU ID */
+    /* Buscar un libro en particular */
+    /* Realizamos la busqueda de un libro en particular utilizando su ID */
 
     static public function buscarLibrosController($id_libros) {
 
@@ -61,6 +35,15 @@
 
     }
     
-    /* BUSCAR UN LIBRO EN PARTICULAR */
+    /* Consulta de codigos y de cualquier columna de la tabla libros */
+
+    //Enviamos a Model como parametros el nombre de la tabla, columna y su valor
+    static public function buscarColumnaLibrosController($item, $valor) {
+
+        $tabla="libros";
+        $respuesta = LibrosModel::buscarColumnaLibrosModel($tabla, $item, $valor);
+        return $respuesta;
+
+    }
 
 }

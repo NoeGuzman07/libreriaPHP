@@ -109,4 +109,23 @@
 
         /* BUSCAR UN LIBRO EN PARTICULAR */
 
+        //MODELO: CONSULTA DE CUALQUIER COLUMNA DE LA TABLA LIBROS EN LA BASE DE DATOS
+		static public function buscarColumnaLibrosModel($tabla, $item, $valor) {
+
+			if($item == null && $valor == null) {
+            	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+				$stmt->execute();
+				return $stmt -> fetchAll();
+			} else {
+            	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+				$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
+				$stmt->execute();
+				return $stmt -> fetch();
+			}
+
+			//$stmt->close();
+			//$stmt = null;
+
+		}
+
     }

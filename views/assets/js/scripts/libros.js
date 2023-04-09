@@ -1,9 +1,5 @@
 
-/**
- * Listener para el boton de agregar libros
- * Limpia los campos del modal de registro de libros 
- * Y muestra el modal
- */
+/* Listener para el boton de Agregar libros, Limpia los campos del modal de registro de libros Y muestra el modal */
 
 $(document).on("click", "#agregar_libros", function() {
 
@@ -15,10 +11,7 @@ $(document).on("click", "#agregar_libros", function() {
 
 });
 
-/**
- * Listener para el submit del form de registro de libros.
- * Verifica los campos para enviar la infromacion mediante AJAX
-*/
+/* Listener para el submit del form de Agregar libros, Verifica los campos para enviar la infromacion mediante AJAX */
 
 $(document).on("submit","#form_libros",function() {
 
@@ -57,86 +50,86 @@ $(document).on("submit","#form_libros",function() {
             contentType: false,
             processData: false,
             //manda a llamar loading y desactiva inputs submit
-            //beforeSend:cargaSistema(true),
             success:function(respuesta) {
-                // console.log(respuesta);
                 if(respuesta=="session_expired") {
-                    //si la session con el servidor expiró, recarga el sitio
                     sesionExpirada();
                 } else if(respuesta=="success") {
                     //el registro se realizo exitosamente.
                     (id_libros!="") ? alertaUpdate() : alertaInsert();
                 } else {
-                    //se recibio un mensaje diferente a success
                     swal("¡Error!", "Ha ocurrido un error.", "error");
                 }
-                //desactivamos el loading y habilitamos los inputs submit
-            //cargaSistema(false);
-                
             }
-
         });
 
 });
 
-/* VALIDAR IMAGENES */
+/* Validar Imagenes */
 
 $(document).on('change', '.validarImagen', function(){
-
 	if($(this)[0].files[0].type != "image/jpeg" && $(this)[0].files[0].type != "image/png"){
-
 		$(this).val("");
-
 		swal("¡Error!", "¡Solo se permiten archivos en formato JPG y PNG!", "error");
-
     }
-
 });
 
-/* End of VALIDAR IMAGENES */
-
-/*====================================================
-=            VALIDAR IMAGEN PREVISUALIZAR            =
-====================================================*/
+/* Validar Imagen Previsualizar */
 
 $(document).on('change', '.imagenPrevisualizar', function(){
-
 	let imagen = this.files[0];
 	let input = $(this);
-
 	if((imagen.type == "image/jpeg" || imagen.type == "image/png")){
-
 		let datosImagen = new FileReader;
         datosImagen.readAsDataURL(imagen);
-
         $(datosImagen).on("load", function(event){
-
             let rutaImagen = event.target.result;
-
 			$("#imagen_previsualizar").attr("src", rutaImagen);
-
         });
-
 	}
-
 });
 
-/*=====  End of VALIDAR IMAGEN PREVISUALIZAR  ======*/
-
-/* VALIDAR 0 */
+/* Validar 0 en el campo de precios de libros */
 
 $(document).on("change", ".validar0", function () {
-
 	let valor = Number($(this).val());
-  
-	if(valor <= 0){
-	  $(this).addClass("is-invalid");
-	  $(this).next().show();
-	}else{
-	  $(this).removeClass("is-invalid");
-	  $(this).next().hide();
+	if(valor <= 0) {
+      $("#precio_libros").val("");
 	}
-  
 });
 
-/* End of VALIDAR 0 */
+/* Validar 0 en el campo del Stock actual de libros */
+
+$(document).on("change", ".validar00", function () {
+	let valor = Number($(this).val());
+	if(valor < 1) {
+      $("#stock_actual_libros").val("");
+	}
+});
+
+/* Funcion de JavaScript para validar los Codigos de libros, esta conectado con AJAX */
+
+$("#codigo_libros").change(function() {
+    $(".alert").remove();
+    var codigo = $(this).val();
+    var datos = new FormData();
+    datos.append("validarCodigoLibros", codigo);
+    $.ajax({
+        url:url+"views/ajax/ajax_libros.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+            if(respuesta) {
+                $("#codigo_libros").val("");
+                $("#codigo_libros").parent().after(`
+                    <div class="alert alert-warning">
+                        <b>ERROR:</b>
+                        El codigo del libro ya existe, por favor introduzca otro diferente
+                    </div>`)
+            }
+        }
+    });
+});

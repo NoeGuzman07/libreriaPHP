@@ -54,7 +54,7 @@
                             </div>
                         </div>
 
-						<div class="col-md-6">
+                        <div class="col-md-6">
                         	<div class="form-group">
                             	<label for="">Autor:</label>
                                 <select class="form-control input_libros" id="autor_libros" required>
@@ -91,7 +91,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Stock Actual (opcional):</label>
-                                <input type="number" class="form-control input_libros validar0" id="stock_actual_libros">
+                                <input type="number" class="form-control input_libros validar00" id="stock_actual_libros">
                             </div>                            
                         </div>
                         
