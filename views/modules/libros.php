@@ -1,3 +1,9 @@
+<?php
+	$librosAutor = LibrosController::buscarAutorLibrosController(null, null);
+    $librosEditorial = LibrosController::buscarEditorialLibrosController(null, null);
+    $categoria = LibrosController::buscarCategoriaController(null, null);
+?>
+
 <!-- Título del módulo -->
 <div class="titulo-boton">
     <h1 class="titulo-modulo">Libros</h1>
@@ -34,8 +40,9 @@
                             	<label for="">Categoría:</label>
                                 <select class="form-control input_libros" id="categoria_libros" required>
                                     <option value="" selected>Selecciona una opción</option>
-                                    <option value="Comic">Comic</option>
-									<option value="Novela">Novela</option>
+                                    <?php foreach ($categoria as $key => $value) : ?>
+                                        <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["id_categoria"]; ?> <?php echo $value["nombre_categoria"]; ?></option>
+                                        <?php endforeach ?>
                                 </select>
                             </div>
                         </div>
@@ -58,9 +65,10 @@
                         	<div class="form-group">
                             	<label for="">Autor:</label>
                                 <select class="form-control input_libros" id="autor_libros" required>
-                                    <option value="" selected>Seleccione/Ingrese una opción</option>
-                                    <option value="Stan Lee">Stan Lee</option>
-									<option value="Gabriel Garcia Marquez">Gabriel Garcia Marquez</option>
+                                    <option value="" disabled>Seleccione/Ingrese una opción</option>
+                                    <?php foreach ($librosAutor as $key => $value) : ?>
+                                        <option><?php echo $value["autor"]; ?></option>
+                                        <?php endforeach ?>
                                 </select>
                             </div>
                         </div>
@@ -69,9 +77,10 @@
                         	<div class="form-group">
                             	<label for="">Editorial:</label>
                                 <select class="form-control input_libros" id="editorial_libros" required>
-                                    <option value="" selected>Seleccione/Ingrese una opción</option>
-                                    <option value="Administrador">Marvel Comic</option>
-									<option value="Administrador">Editorial Montenegro</option>
+                                    <option value="" disabled>Seleccione/Ingrese una opción</option>
+                                    <?php foreach ($librosEditorial as $key => $value) : ?>
+                                        <option><?php echo $value["editorial"]; ?></option>
+                                        <?php endforeach ?>
                                 </select>
                             </div>
                         </div>

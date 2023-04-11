@@ -36,12 +36,38 @@
     }
     
     /* Consulta de codigos y de cualquier columna de la tabla libros */
-
     //Enviamos a Model como parametros el nombre de la tabla, columna y su valor
     static public function buscarColumnaLibrosController($item, $valor) {
 
         $tabla="libros";
         $respuesta = LibrosModel::buscarColumnaLibrosModel($tabla, $item, $valor);
+        return $respuesta;
+
+    }
+
+    /* Consulta de autores existentes en la tabla libros */
+    static public function buscarAutorLibrosController($item, $valor) {
+
+        $tabla="libros";
+        $respuesta = LibrosModel::buscarAutorLibrosModel($tabla, $item, $valor);
+        return $respuesta;
+
+    }
+
+    /* Consulta de editoriales en la tabla libros */
+    static public function buscarEditorialLibrosController($item, $valor) {
+
+        $tabla="libros";
+        $respuesta = LibrosModel::buscarEditorialLibrosModel($tabla, $item, $valor);
+        return $respuesta;
+
+    }
+
+    /* Consulta de categorias en la tabla categoria */
+    static public function buscarCategoriaController($item, $valor) {
+
+        $tabla="categoria";
+        $respuesta = LibrosModel::buscarCategoriaModel($tabla, $item, $valor);
         return $respuesta;
 
     }

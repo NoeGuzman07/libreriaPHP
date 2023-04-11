@@ -128,4 +128,40 @@
 
 		}
 
+        //MODELO: CONSULTA DE AUTORES, AQUI SE UTILIZA LA FUNCION DISTINCT PARA EVITAR MOSTRAR AUTORES REPETIDOS
+		static public function buscarAutorLibrosModel($tabla, $item, $valor) {
+
+		    $stmt = Conexion::conectar()->prepare("SELECT DISTINCT autor FROM $tabla");
+			$stmt->execute();
+			return $stmt -> fetchAll();
+
+			//$stmt->close();
+			//$stmt = null;
+
+		}
+
+        //MODELO: CONSULTA DE Editoriales, AQUI SE UTILIZA LA FUNCION DISTINCT PARA EVITAR MOSTRAR AUTORES REPETIDOS
+		static public function buscarEditorialLibrosModel($tabla, $item, $valor) {
+
+		    $stmt = Conexion::conectar()->prepare("SELECT DISTINCT editorial FROM $tabla");
+			$stmt->execute();
+			return $stmt -> fetchAll();
+
+			//$stmt->close();
+			//$stmt = null;
+
+		}
+
+        //MODELO: CONSULTA DE Editoriales, AQUI SE UTILIZA LA FUNCION DISTINCT PARA EVITAR MOSTRAR AUTORES REPETIDOS
+		static public function buscarCategoriaModel($tabla, $item, $valor) {
+
+		    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt->execute();
+			return $stmt -> fetchAll();
+
+			//$stmt->close();
+			//$stmt = null;
+
+		}
+
     }

@@ -13,6 +13,9 @@ $(document).on("click", "#agregar_libros", function() {
 
 /* Listener para el submit del form de Agregar libros, Verifica los campos para enviar la infromacion mediante AJAX */
 
+$('#autor_libros').editableSelect();
+$('#editorial_libros').editableSelect();
+
 $(document).on("submit","#form_libros",function() {
 
     let id_libros = $("#id_libros_editar").val();
