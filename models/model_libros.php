@@ -21,9 +21,9 @@
 
             $conexion = Conexion::conectar();
             
-            $stmt = $conexion->prepare("INSERT INTO libros(categoria, codigo, nombre_libros, autor, editorial, precio, stock_actual, descripcion, imagen) VALUES (:categoria, :codigo, :nombre_libros, :autor, :editorial, :precio, :stock_actual, :descripcion, 'views/assets/img/usuario_default.png') ");
+            $stmt = $conexion->prepare("INSERT INTO libros(id_categoria, codigo, nombre_libros, autor, editorial, precio, stock_actual, descripcion, imagen) VALUES (:id_categoria, :codigo, :nombre_libros, :autor, :editorial, :precio, :stock_actual, :descripcion, 'views/assets/img/usuario_default.png') ");
 
-            $stmt -> bindParam(':categoria', $datos['categoria'],PDO::PARAM_STR);
+            $stmt -> bindParam(':id_categoria', $datos['id_categoria'],PDO::PARAM_INT);
             $stmt -> bindParam(':codigo', $datos['codigo'],PDO::PARAM_STR);
             $stmt -> bindParam(':nombre_libros', $datos['nombre_libros'],PDO::PARAM_STR);
             $stmt -> bindParam(':autor', $datos['autor'],PDO::PARAM_STR);
@@ -32,7 +32,7 @@
             $stmt -> bindParam(':stock_actual', $datos['stock_actual'],PDO::PARAM_INT);
             $stmt -> bindParam(':descripcion', $datos['descripcion'],PDO::PARAM_STR);
 
-            if($stmt->execute()){
+            if($stmt->execute()) {
                 return $conexion-> lastInsertId();
             }else{
                 return "error";
@@ -41,15 +41,15 @@
 
         }
 
-        /* INSERTAR-REGISTRAR LIBROS */
+        /* End of INSERTAR-REGISTRAR LIBROS */
 
         /* EDITAR LIBRO */
 
         static public function editarLibrosModel($datos) {
 
-            $stmt = Conexion::conectar()->prepare("UPDATE libros SET categoria=:categoria, codigo=:codigo, nombre_libros=:nombre_libros, autor=:autor, editorial=:editorial, precio=:precio, stock_actual=:stock_actual, descripcion=:descripcion WHERE id_libros=:id_libros");
+            $stmt = Conexion::conectar()->prepare("UPDATE libros SET id_categoria=:id_categoria, codigo=:codigo, nombre_libros=:nombre_libros, autor=:autor, editorial=:editorial, precio=:precio, stock_actual=:stock_actual, descripcion=:descripcion WHERE id_libros=:id_libros");
 
-            $stmt -> bindParam(':categoria', $datos['categoria'],PDO::PARAM_STR);
+            $stmt -> bindParam(':id_categoria', $datos['id_categoria'],PDO::PARAM_STR);
             $stmt -> bindParam(':codigo', $datos['codigo'],PDO::PARAM_STR);
             $stmt -> bindParam(':nombre_libros', $datos['nombre_libros'],PDO::PARAM_STR);
             $stmt -> bindParam(':autor', $datos['autor'],PDO::PARAM_STR);

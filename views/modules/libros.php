@@ -31,14 +31,14 @@
 
                 <div class="modal-body">
 
-                    <input type="hidden" id="id_libros_editar">
+                    <input type="hidden" id="id_libros">
                     
 					<div class="row">
 
                         <div class="col-md-4">
                         	<div class="form-group">
                             	<label for="">Categoría:</label>
-                                <select class="form-control input_libros" id="categoria_libros" required>
+                                <select class="form-control input_libros" id="id_categoria" required>
                                     <option value="" selected>Selecciona una opción</option>
                                     <?php foreach ($categoria as $key => $value) : ?>
                                         <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["id_categoria"]; ?> <?php echo $value["nombre_categoria"]; ?></option>

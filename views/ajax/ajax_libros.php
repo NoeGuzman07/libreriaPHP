@@ -45,7 +45,7 @@
             
             $datos = array (
                 "id_libros" => isset($_POST['id_libros']) ? $_POST['id_libros'] : false,
-                "categoria"=>$_POST['categoria_libros'],
+                "id_categoria"=>$_POST['id_categoria'],
                 "codigo"=>$_POST['codigo_libros'],
                 "nombre_libros"=>$_POST['nombre_libros'],
                 "autor"=>$_POST['autor_libros'],

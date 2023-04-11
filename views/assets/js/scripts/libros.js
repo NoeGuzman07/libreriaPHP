@@ -18,9 +18,9 @@ $('#editorial_libros').editableSelect();
 
 $(document).on("submit","#form_libros",function() {
 
-    let id_libros = $("#id_libros_editar").val();
-    
-    let categoria = $("#categoria_libros").val();
+    let id_libros = $("#id_libros").val();
+    let id_categoria = $("#id_categoria").val();
+
     let codigo = $("#codigo_libros").val();
     let nombre_libros = $("#nombre_libros").val();
     let autor = $("#autor_libros").val();
@@ -34,7 +34,8 @@ $(document).on("submit","#form_libros",function() {
         
     if(id_libros) datos.append("id_libros",id_libros);
 
-        datos.append("categoria_libros", categoria);
+        datos.append("id_categoria", id_categoria);
+        
         datos.append("codigo_libros", codigo);
         datos.append("nombre_libros", nombre_libros);
         datos.append("autor_libros", autor);
