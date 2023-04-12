@@ -38,10 +38,10 @@
                         <div class="col-md-4">
                         	<div class="form-group">
                             	<label for="">Categoría:</label>
-                                <select class="form-control input_libros" id="id_categoria" required>
-                                    <option value="" selected>Selecciona una opción</option>
+                                <select class="form-control input_libros" id="id_categoria" columna="id_categoria" required>
+                                    <option value="" selected disabled>Selecciona una opción</option>
                                     <?php foreach ($categoria as $key => $value) : ?>
-                                        <option value="<?php echo $value["id_categoria"]; ?>"><?php echo $value["id_categoria"]; ?> <?php echo $value["nombre_categoria"]; ?></option>
+                                        <option value="<?php echo $value["id_categoria"]; ?>"><?php echo ($key + 1); ?>. <?php echo $value["nombre"]; ?></option>
                                         <?php endforeach ?>
                                 </select>
                             </div>
@@ -50,14 +50,16 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">Código:</label>
-                                <input type="text" class="form-control input_libros" id="codigo_libros" required>
+                                <input type="text" class="form-control input_libros validarCampo" id="codigo_libros" tabla="libros" columna="codigo" mensaje="El codigo del libro ya se encuentra registrado" required>
+                                <div class="invalid-feedback" style="display: none;"></div>
                             </div>
                         </div>
 
 						<div class="col-md-4">
                             <div class="form-group">
                                 <label for="">Nombre del libro:</label>
-                                <input type="text" class="form-control input_libros" id="nombre_libros" required>
+                                <input type="text" class="form-control input_libros validarCampoNombre" id="nombre_libros" tabla="libros" columna="nombre" mensaje="El nombre ya se encuentra registrado en la categoria seleccionada" required>
+                                <div class="invalid-feedback" style="display: none;"></div>
                             </div>
                         </div>
 
@@ -65,7 +67,7 @@
                         	<div class="form-group">
                             	<label for="">Autor:</label>
                                 <select class="form-control input_libros" id="autor_libros" required>
-                                    <option value="" disabled>Seleccione/Ingrese una opción</option>
+                                <option value="" disabled>Seleccione/Ingrese una opción</option>
                                     <?php foreach ($librosAutor as $key => $value) : ?>
                                         <option><?php echo $value["autor"]; ?></option>
                                         <?php endforeach ?>
@@ -100,7 +102,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Stock Actual (opcional):</label>
-                                <input type="number" class="form-control input_libros validar00" id="stock_actual_libros">
+                                <input type="number" class="form-control input_libros validar00" id="stock_libros">
                             </div>                            
                         </div>
                         

@@ -1,17 +1,19 @@
 
-/* Listener para el boton de Agregar libros, Limpia los campos del modal de registro de libros Y muestra el modal */
+/* Listener para el boton de Agregar libros, Limpia los campos del modal de registro de libros y muestra el modal */
 
 $(document).on("click", "#agregar_libros", function() {
 
     $("#titulo_modal_libros").html("Agregando libro");
     $(".input_libros").val("");
+    $("#codigo_libros").removeClass("validarCampoEditar").addClass("validarCampo").attr("id_libros","").change();
+    $("#nombre_libros").removeClass("validarCampoNombreEditar").addClass("validarCampoNombre").attr("id_libros","").change();
     $("#imagen_previsualizar").attr("src","views/assets/img/usuario_default.png")
     $("#input_imagen,#archivo_cedula_libros").next().html("Seleccionar archivo");
     $("#modal_registrar_libros").modal("show");
 
 });
 
-/* Listener para el submit del form de Agregar libros, Verifica los campos para enviar la infromacion mediante AJAX */
+/* Listener para el submit del form de Agregar libros, verifica los campos para enviar la infromacion mediante AJAX */
 
 $('#autor_libros').editableSelect();
 $('#editorial_libros').editableSelect();
@@ -22,11 +24,11 @@ $(document).on("submit","#form_libros",function() {
     let id_categoria = $("#id_categoria").val();
 
     let codigo = $("#codigo_libros").val();
-    let nombre_libros = $("#nombre_libros").val();
+    let nombre = $("#nombre_libros").val();
     let autor = $("#autor_libros").val();
     let editorial = $("#editorial_libros").val();
     let precio = $("#precio_libros").val();
-    let stock_actual = $("#stock_actual_libros").val();
+    let stock = $("#stock_libros").val();
     let descripcion = $("#descripcion_libros").val();
     let imagen = $("#input_imagen")[0].files[0];
 
@@ -37,11 +39,11 @@ $(document).on("submit","#form_libros",function() {
         datos.append("id_categoria", id_categoria);
         
         datos.append("codigo_libros", codigo);
-        datos.append("nombre_libros", nombre_libros);
+        datos.append("nombre", nombre);
         datos.append("autor_libros", autor);
         datos.append("editorial_libros", editorial);
         datos.append("precio_libros", precio);
-        datos.append("stock_actual_libros", stock_actual);
+        datos.append("stock_libros", stock);
         datos.append("descripcion_libros", descripcion);
 
         if(imagen) datos.append("imagen_libros",imagen);
@@ -68,16 +70,16 @@ $(document).on("submit","#form_libros",function() {
 
 });
 
-/* Validar Imagenes */
+/* Validar imagenes */
 
-$(document).on('change', '.validarImagen', function(){
+$(document).on('change', '.validarImagen', function() {
 	if($(this)[0].files[0].type != "image/jpeg" && $(this)[0].files[0].type != "image/png"){
 		$(this).val("");
 		swal("¡Error!", "¡Solo se permiten archivos en formato JPG y PNG!", "error");
     }
 });
 
-/* Validar Imagen Previsualizar */
+/* Validar previsualizar imagenes */
 
 $(document).on('change', '.imagenPrevisualizar', function(){
 	let imagen = this.files[0];
@@ -106,34 +108,104 @@ $(document).on("change", ".validar0", function () {
 $(document).on("change", ".validar00", function () {
 	let valor = Number($(this).val());
 	if(valor < 1) {
-      $("#stock_actual_libros").val("");
+      $("#stock_libros").val("");
 	}
 });
 
-/* Funcion de JavaScript para validar los Codigos de libros, esta conectado con AJAX */
+/**
+ * Listener para mostrar la informacion al editar un libro
+ * Se manda a llamar un ajax para obtener la información, 
+ * Una vez recibida se muestra en los campos del modal para registrar libros
+ * Y al terminar se muestra el modal.
+ */
 
-$("#codigo_libros").change(function() {
-    $(".alert").remove();
-    var codigo = $(this).val();
+$(document).on("click",".editar_libros",function(){
+    
     var datos = new FormData();
-    datos.append("validarCodigoLibros", codigo);
+    
+    datos.append("id_libros_buscar",$(this).attr("id_libros"));
+    
     $.ajax({
-        url:url+"views/ajax/ajax_libros.php",
-        method: "POST",
+        url:url+'views/ajax/ajax_libros.php',
+        method:'POST',
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
-        dataType: "json",
-        success: function(respuesta) {
-            if(respuesta) {
-                $("#codigo_libros").val("");
-                $("#codigo_libros").parent().after(`
-                    <div class="alert alert-warning">
-                        <b>ERROR:</b>
-                        El codigo del libro ya existe, por favor introduzca otro diferente
-                    </div>`)
+        beforeSend:loading(true),
+        success:function(respuesta){
+            // console.log(respuesta);
+            if(respuesta=="session_expired"){
+                sesionExpirada();
+            }else{
+                respuesta = JSON.parse(respuesta);
+                $("#titulo_modal_libros").html("Editando libro");
+                $("#id_libros_editar").val(respuesta.id_libros);
+                //$("#codigo_libros").val(respuesta.codigo);
+                $("#codigo_libros").val(respuesta.codigo).removeClass("validarCampo").addClass("validarCampoEditar").attr("id_libros",respuesta.id_libros).change();
+                $("#nombre_libros").val(respuesta.nombre);
+                $("#autor_libros").val(respuesta.autor);
+                $("#editorial_libros").val(respuesta.editorial);
+                $("#precio_libros").val(respuesta.precio);
+                $("#stock_libros").val(respuesta.stock);
+                $("#descripcion_libros").val(respuesta.descripcion);
+                // $("#imagen_previsualizar,#imagenCamaraPaciente").attr("src",url+respuesta.imagen);
+                $("#modal_registrar_usuarios").modal("show");
+            }
+            loading(false);
+        }
+    });
+});
+
+/**
+ * Listener para valiidar el campo de nombre de libros
+ * El nombre del libro no puede repetirse dentro de la misma categoria
+ */
+
+$(document).on("change", ".validarCampoNombre", function () {
+
+    let valorPrimario = $("#id_categoria").val();
+    let columnaPrimario = $("#id_categoria").attr("columna");
+    
+    let input = $(this);
+    let valorSecundario = $(this).val();
+    let columnaSecundario = $(this).attr("columna");
+
+    let tabla = $(this).attr("tabla");
+    let mensaje = $(this).attr("mensaje");
+
+    let datos = new FormData();
+
+    datos.append("valorCampoPrimario", valorPrimario);
+    datos.append("columnaCampoPrimario", columnaPrimario);
+
+    datos.append("valorCampoSecundario", valorSecundario);
+    datos.append("columnaCampoSecundario", columnaSecundario);
+
+    datos.append("tablaCampo", tabla);
+
+    $.ajax({
+        url:url+"views/ajax/ajax_general.php",
+        method:"POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success:function(respuesta) {
+            if(respuesta === "session_expired") {
+                sesionExpirada();
+            } else {
+                if(respuesta == 0) {
+                    $(input).addClass("is-invalid");
+                    $(input).next().html(mensaje);
+                    $(input).next().show();
+                } else {
+                    $(input).removeClass("is-invalid");
+                    $(input).next().hide();
+                }
             }
         }
     });
 });
+
+/*=====  End of Validar Campo Nombre de libros  ======*/

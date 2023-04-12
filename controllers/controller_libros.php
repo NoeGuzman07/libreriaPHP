@@ -2,7 +2,7 @@
 
     class LibrosController {
 
-    /* Funcion para validar un LIBRO y Insertarlo-Registrarlo en la base de datos */
+    /* Funcion para validar un Libro y agregarlo a la base de datos */
     static public function insertarLibrosController($datos) {
         //Verificacion de ID existente
         if($datos['id_libros']) {
@@ -10,6 +10,8 @@
             LibrosController::editarLibrosController($datos);
         } else {
             //Cuando No se encuentra un ID, se realizara el registro del libro en la base de datos
+            $datos['id_alta'] = $_SESSION['id_usuarios'];
+            $datos['fecha_alta']= date("Y-m-d H:i:s");
             $datos['id_libros'] = LibrosModel::insertarLibrosModel($datos);
         }
         //Buscamos al libro para obtener el nombre del archivo de la imagen actual

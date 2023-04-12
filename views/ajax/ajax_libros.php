@@ -7,7 +7,7 @@
 
     class Libros {
 
-        //Funcion que permite llamar a los metodos definidos en la capa Controller
+        //Funcion para llamar a los metodos definidos en controller libros
         public $datos;
         public $controller;
         public function funcionLibros() {
@@ -18,40 +18,24 @@
 
         }
 
-        //Funcion para validar Codigos de libros existentes de libros
-        public $validarCodigoLibros;
-	    public function ajaxValidarCodigoLibros() {
-		    $item = "codigo";
-		    $valor = $this->validarCodigoLibros;
-		    $respuesta = LibrosController::buscarColumnaLibrosController($item, $valor);
-		    echo json_encode($respuesta);
-	    }
-
     }
 
     session_start();
 
-    //Condición: Validar codigo de libro existente
-    if(isset($_POST["validarCodigoLibros"])) {
-        $v = new Libros();
-	    $v -> validarCodigoLibros = $_POST["validarCodigoLibros"];
-	    $v -> ajaxValidarCodigoLibros();
-    }
-
-    //Condicion: Registro de libros
+    //Condicion: Agregar libros
     if(isset($_SESSION['iniciarSesion']) && $_SESSION['iniciarSesion'] == 'ok') {
         
-        if(isset($_POST['nombre_libros'])) {
+        if(isset($_POST['nombre'])) {
             
             $datos = array (
                 "id_libros" => isset($_POST['id_libros']) ? $_POST['id_libros'] : false,
                 "id_categoria"=>$_POST['id_categoria'],
                 "codigo"=>$_POST['codigo_libros'],
-                "nombre_libros"=>$_POST['nombre_libros'],
+                "nombre"=>$_POST['nombre'],
                 "autor"=>$_POST['autor_libros'],
                 "editorial"=>$_POST['editorial_libros'],
                 "precio"=>$_POST['precio_libros'],
-                "stock_actual"=>$_POST['stock_actual_libros'],
+                "stock"=>$_POST['stock_libros'],
                 "descripcion"=>$_POST['descripcion_libros'],
                 "imagen"=> isset($_FILES["imagen_libros"]) ? $_FILES["imagen_libros"] : false,
             );
@@ -74,7 +58,5 @@
         }
 
     } else {
-        
         echo "session_expired";
-    
     }

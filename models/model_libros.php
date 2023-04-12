@@ -4,7 +4,7 @@
 
     class LibrosModel extends Conexion {
 
-        /* OBTENER LIBROS */
+        /* Obtener libros se consulta a todos los datos de la base de datos */
 
         static public function obtenerLibrosModel() {
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
@@ -13,24 +13,26 @@
             $stmt = null;
         }
 
-        /* OBTENER LIBROS */
+        /* End of Obtener libros */
 
-        /* INSERTAR-REGISTRAR LIBROS */
+        /* Agregar libros */
 
         static public function insertarLibrosModel($datos) {
 
             $conexion = Conexion::conectar();
             
-            $stmt = $conexion->prepare("INSERT INTO libros(id_categoria, codigo, nombre_libros, autor, editorial, precio, stock_actual, descripcion, imagen) VALUES (:id_categoria, :codigo, :nombre_libros, :autor, :editorial, :precio, :stock_actual, :descripcion, 'views/assets/img/usuario_default.png') ");
+            $stmt = $conexion->prepare("INSERT INTO libros(id_categoria, codigo, nombre, autor, editorial, descripcion, precio, imagen, stock, id_alta, fecha_alta) VALUES (:id_categoria, :codigo, :nombre, :autor, :editorial, :descripcion, :precio, 'views/assets/img/usuario_default.png', :stock, :id_alta, :fecha_alta)");
 
             $stmt -> bindParam(':id_categoria', $datos['id_categoria'],PDO::PARAM_INT);
             $stmt -> bindParam(':codigo', $datos['codigo'],PDO::PARAM_STR);
-            $stmt -> bindParam(':nombre_libros', $datos['nombre_libros'],PDO::PARAM_STR);
+            $stmt -> bindParam(':nombre', $datos['nombre'],PDO::PARAM_STR);
             $stmt -> bindParam(':autor', $datos['autor'],PDO::PARAM_STR);
             $stmt -> bindParam(':editorial', $datos['editorial'],PDO::PARAM_STR);
-            $stmt -> bindParam(':precio', $datos['precio'],PDO::PARAM_INT);
-            $stmt -> bindParam(':stock_actual', $datos['stock_actual'],PDO::PARAM_INT);
             $stmt -> bindParam(':descripcion', $datos['descripcion'],PDO::PARAM_STR);
+            $stmt -> bindParam(':precio', $datos['precio'],PDO::PARAM_INT);
+            $stmt -> bindParam(':stock', $datos['stock'],PDO::PARAM_INT);
+            $stmt -> bindParam(':id_alta',$datos['id_alta'],PDO::PARAM_INT);
+            $stmt -> bindParam(':fecha_alta',$datos['fecha_alta'],PDO::PARAM_STR); 
 
             if($stmt->execute()) {
                 return $conexion-> lastInsertId();
@@ -41,17 +43,17 @@
 
         }
 
-        /* End of INSERTAR-REGISTRAR LIBROS */
+        /* End of Agregar libros */
 
-        /* EDITAR LIBRO */
+        /* Editar libros */
 
         static public function editarLibrosModel($datos) {
 
-            $stmt = Conexion::conectar()->prepare("UPDATE libros SET id_categoria=:id_categoria, codigo=:codigo, nombre_libros=:nombre_libros, autor=:autor, editorial=:editorial, precio=:precio, stock_actual=:stock_actual, descripcion=:descripcion WHERE id_libros=:id_libros");
+            $stmt = Conexion::conectar()->prepare("UPDATE libros SET id_categoria=:id_categoria, codigo=:codigo, nombre=:nombre, autor=:autor, editorial=:editorial, precio=:precio, stock_actual=:stock_actual, descripcion=:descripcion WHERE id_libros=:id_libros");
 
             $stmt -> bindParam(':id_categoria', $datos['id_categoria'],PDO::PARAM_STR);
             $stmt -> bindParam(':codigo', $datos['codigo'],PDO::PARAM_STR);
-            $stmt -> bindParam(':nombre_libros', $datos['nombre_libros'],PDO::PARAM_STR);
+            $stmt -> bindParam(':nombre', $datos['nombre'],PDO::PARAM_STR);
             $stmt -> bindParam(':autor', $datos['autor'],PDO::PARAM_STR);
             $stmt -> bindParam(':editorial', $datos['editorial'],PDO::PARAM_STR);
             $stmt -> bindParam(':precio', $datos['precio'],PDO::PARAM_INT);
@@ -68,9 +70,9 @@
 
         }
 
-        /* EDITAR LIBRO */
+        /* End of Editar Libros */
 
-        /* EDITAR IMAGEN LIBRO */
+        /* Editar imagen de un libro */
 
         static public function editarImagenLibrosModel($datos) {
         
@@ -89,9 +91,9 @@
         
         }
 
-        /* EDITAR IMAGEN LIBRO */
+        /* End of Editar Imagen de un libro */
 
-        /* BUSCAR UN LIBRO EN PARTICULAR */
+        /* Buscar los datos de un libro en particular a partir de su ID */
 
         static public function buscarLibrosModel($id_libros) {
 
@@ -107,9 +109,9 @@
 
         }
 
-        /* BUSCAR UN LIBRO EN PARTICULAR */
+        /* End of Buscar los datos de un libros en particular a partir de su ID */
 
-        //MODELO: CONSULTA DE CUALQUIER COLUMNA DE LA TABLA LIBROS EN LA BASE DE DATOS
+        //Consulta de cualquier columna de la tabla libros
 		static public function buscarColumnaLibrosModel($tabla, $item, $valor) {
 
 			if($item == null && $valor == null) {
@@ -128,7 +130,7 @@
 
 		}
 
-        //MODELO: CONSULTA DE AUTORES, AQUI SE UTILIZA LA FUNCION DISTINCT PARA EVITAR MOSTRAR AUTORES REPETIDOS
+        //Modelo: Consulta de autores, aqui se utiliza la funcion Distinct para evitar mostrar autores repetidos
 		static public function buscarAutorLibrosModel($tabla, $item, $valor) {
 
 		    $stmt = Conexion::conectar()->prepare("SELECT DISTINCT autor FROM $tabla");
@@ -140,7 +142,7 @@
 
 		}
 
-        //MODELO: CONSULTA DE Editoriales, AQUI SE UTILIZA LA FUNCION DISTINCT PARA EVITAR MOSTRAR AUTORES REPETIDOS
+        //Modelo: Consulta de Editoriales, aqui se utiliza la funcion Distinct para evitar mostrar autores repetidos
 		static public function buscarEditorialLibrosModel($tabla, $item, $valor) {
 
 		    $stmt = Conexion::conectar()->prepare("SELECT DISTINCT editorial FROM $tabla");
@@ -152,7 +154,7 @@
 
 		}
 
-        //MODELO: CONSULTA DE Editoriales, AQUI SE UTILIZA LA FUNCION DISTINCT PARA EVITAR MOSTRAR AUTORES REPETIDOS
+        //Modelo: Consulta de Categorias, aqui se utiliza la Tabla Categorias y la función Distinct para evitar mostrar autores repetidos
 		static public function buscarCategoriaModel($tabla, $item, $valor) {
 
 		    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
