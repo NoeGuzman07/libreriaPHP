@@ -1,5 +1,5 @@
 
-/* Listener para el boton de Agregar libros, Limpia los campos del modal de registro de libros y muestra el modal */
+/* Listener para el boton de Agregar libros, limpia los campos del modal de registro de libros y muestra el modal */
 
 $(document).on("click", "#agregar_libros", function() {
 
@@ -142,7 +142,7 @@ $(document).on("click",".editar_libros",function(){
                 $("#titulo_modal_libros").html("Editando libro");
                 $("#id_libros_editar").val(respuesta.id_libros);
                 //$("#codigo_libros").val(respuesta.codigo);
-                $("#codigo_libros").val(respuesta.codigo).removeClass("validarCampo").addClass("validarCampoEditar").attr("id_libros",respuesta.id_libros).change();
+                $("#codigo_libros").val(respuesta.codigo).removeClass("validarCampo").addClass("validarCampoEditar").attr("id_libros", respuesta.id_libros).change();
                 $("#nombre_libros").val(respuesta.nombre);
                 $("#autor_libros").val(respuesta.autor);
                 $("#editorial_libros").val(respuesta.editorial);
@@ -157,8 +157,7 @@ $(document).on("click",".editar_libros",function(){
     });
 });
 
-/**
- * Listener para valiidar el campo de nombre de libros
+/* Listener para valiidar el campo de nombre de libros
  * El nombre del libro no puede repetirse dentro de la misma categoria
  */
 
@@ -208,4 +207,56 @@ $(document).on("change", ".validarCampoNombre", function () {
     });
 });
 
-/*=====  End of Validar Campo Nombre de libros  ======*/
+//Script para mostrar tabla de libros, esta debe cargarse desde JSON
+//mediante una respuesta desde AJAX
+
+$(document).ready(function() {
+    cargarTablaLibros();
+});
+
+function cargarTablaLibros() {
+
+    const tabla = $('#tabla_libros');
+
+    if(tabla.length) {
+
+        let filtros = "";
+        if($.fn.DataTable.isDataTable('#tabla_libros')) tabla.DataTable().destroy();
+    
+        tabla.DataTable({
+            "ajax": {
+                "url" : url+'views/ajax/dataTables/ajax-datatable_libros.php' + filtros,
+                "dataSrc" : function(response) {
+                    loading(false);
+                    return response.data;
+                },
+                "BeforeSend":loading(true)
+            },
+            "deferRender": true,
+            "retrieve": true,
+            "processing": true,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    text:'<img src="'+url+'views/assets/css/img/iconos/datatable/icono-copiar.svg" width="20" height="20">',
+                    titleAttr: 'Copy',
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: '<img src="'+url+'views/assets/css/img/iconos/datatable/icono-excel.svg" width="20" height="20">',
+                    titleAttr: 'Excel',
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: '<img src="'+url+'views/assets/css/img/iconos/datatable/icono-csv.svg" width="20" height="20">',
+                    titleAttr: 'CSV',
+                },
+            ],
+            responsive: true,
+            ordering: true,
+            "language":{"url": url+"views/assets/plugins/DataTables/Spanish.json"}
+        });
+    
+    }
+}

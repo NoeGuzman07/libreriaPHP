@@ -49,16 +49,18 @@
 
         static public function editarLibrosModel($datos) {
 
-            $stmt = Conexion::conectar()->prepare("UPDATE libros SET id_categoria=:id_categoria, codigo=:codigo, nombre=:nombre, autor=:autor, editorial=:editorial, precio=:precio, stock_actual=:stock_actual, descripcion=:descripcion WHERE id_libros=:id_libros");
+            $stmt = Conexion::conectar()->prepare("UPDATE libros SET id_categoria=:id_categoria, codigo=:codigo, nombre=:nombre, autor=:autor, editorial=:editorial, descripcion=:descripcion, precio=:precio, stock=:stock, fecha_alta=:fecha_alta WHERE id_libros=:id_libros");
 
-            $stmt -> bindParam(':id_categoria', $datos['id_categoria'],PDO::PARAM_STR);
+            $stmt -> bindParam(':id_categoria', $datos['id_categoria'],PDO::PARAM_INT);
             $stmt -> bindParam(':codigo', $datos['codigo'],PDO::PARAM_STR);
             $stmt -> bindParam(':nombre', $datos['nombre'],PDO::PARAM_STR);
             $stmt -> bindParam(':autor', $datos['autor'],PDO::PARAM_STR);
             $stmt -> bindParam(':editorial', $datos['editorial'],PDO::PARAM_STR);
-            $stmt -> bindParam(':precio', $datos['precio'],PDO::PARAM_INT);
-            $stmt -> bindParam(':stock_actual', $datos['stock_actual'],PDO::PARAM_INT);
             $stmt -> bindParam(':descripcion', $datos['descripcion'],PDO::PARAM_STR);
+            $stmt -> bindParam(':precio', $datos['precio'],PDO::PARAM_INT);
+            $stmt -> bindParam(':stock', $datos['stock'],PDO::PARAM_INT);
+            $stmt -> bindParam(':fecha_alta',$datos['fecha_alta'],PDO::PARAM_STR);
+            $stmt -> bindParam(':id_libros', $datos['id_libros'], PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return 'success';
@@ -158,6 +160,19 @@
 		static public function buscarCategoriaModel($tabla, $item, $valor) {
 
 		    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt->execute();
+			return $stmt -> fetchAll();
+
+			//$stmt->close();
+			//$stmt = null;
+
+		}
+
+        //Modelo: Consulta de todos los libros registrados en el sistema
+        //No de enviar nada como parametro
+        static public function consultaLibrosModel() {
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM libros");
 			$stmt->execute();
 			return $stmt -> fetchAll();
 

@@ -3,19 +3,28 @@
     class LibrosController {
 
     /* Funcion para validar un Libro y agregarlo a la base de datos */
-    static public function insertarLibrosController($datos) {
+    static public function registrarLibrosController($datos) {
+
+        date_default_timezone_set("America/Tijuana");
+
         //Verificacion de ID existente
         if($datos['id_libros']) {
+
             //Si se encuentra el ID, se realizara cambios del libro en la base de datos
-            LibrosController::editarLibrosController($datos);
+            LibrosModel::editarLibrosModel($datos);
+        
         } else {
+        
             //Cuando No se encuentra un ID, se realizara el registro del libro en la base de datos
             $datos['id_alta'] = $_SESSION['id_usuarios'];
             $datos['fecha_alta']= date("Y-m-d H:i:s");
             $datos['id_libros'] = LibrosModel::insertarLibrosModel($datos);
+        
         }
+        
         //Buscamos al libro para obtener el nombre del archivo de la imagen actual
         $libros = LibrosModel::buscarLibrosModel($datos['id_libros']);
+        
         if($datos['imagen']) {
             //Si se encuentra la imagen, verificamos si existe la imagen para poder eliminarla-remplazarla
             if($libros['imagen']!=""&&file_exists("../../".$libros['imagen'])&&$libros['imagen']!="views/assets/img/usuario_default.png") unlink("../../".$libros['imagen']);
@@ -43,6 +52,14 @@
 
         $tabla="libros";
         $respuesta = LibrosModel::buscarColumnaLibrosModel($tabla, $item, $valor);
+        return $respuesta;
+
+    }
+
+    //* Consula de todos los libros registrados en el sistema */
+    static public function consultaLibrosController() {
+
+        $respuesta = LibrosModel::consultaLibrosModel();
         return $respuesta;
 
     }

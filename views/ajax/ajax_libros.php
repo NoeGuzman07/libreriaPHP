@@ -22,16 +22,16 @@
 
     session_start();
 
-    //Condicion: Agregar libros
     if(isset($_SESSION['iniciarSesion']) && $_SESSION['iniciarSesion'] == 'ok') {
         
-        if(isset($_POST['nombre'])) {
-            
+        if(isset($_POST['nombre_libros'])) {
+
+            //Arreglo: Agregar libros
             $datos = array (
                 "id_libros" => isset($_POST['id_libros']) ? $_POST['id_libros'] : false,
                 "id_categoria"=>$_POST['id_categoria'],
                 "codigo"=>$_POST['codigo_libros'],
-                "nombre"=>$_POST['nombre'],
+                "nombre"=>$_POST['nombre_libros'],
                 "autor"=>$_POST['autor_libros'],
                 "editorial"=>$_POST['editorial_libros'],
                 "precio"=>$_POST['precio_libros'],
@@ -40,7 +40,7 @@
                 "imagen"=> isset($_FILES["imagen_libros"]) ? $_FILES["imagen_libros"] : false,
             );
 
-            $funcion = "insertarLibrosController";
+            $funcion = "registrarLibrosController";
 
         } else if(isset($_POST['id_libros_buscar'])) {
             //Instruccion para buscar un libro en particular, esto a partir de su ID

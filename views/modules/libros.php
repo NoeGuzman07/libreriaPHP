@@ -13,15 +13,27 @@
 
 <h6 class="subtitulo">Tabla de libros</h6>
 
+<!-- TABLA: LISTA DE LIBROS REGISTRADOS EN EL SISTEMA -->
+<table id="tabla_libros" class="table table-striped display">
+
+	<!-- CABECERA Y COLUMNAS DE LA TABLA USUARIOS -->
+	<thead>
+		<tr align="center">		
+			<th>#</th>
+			<th>Categoria</th>
+			<th>Codigo</th>
+			<th>Nombre</th>
+			<th>Fecha de alta</th>
+		</tr>
+	</thead>
+    
+</table>
+
 <!-- Modal para registrar libros -->
 <div class="modal fade" id="modal_registrar_libros" data-backdrop="static" tabindex="-1">
-	
     <div class="modal-dialog modal-lg">
-        
 		<div class="modal-content">
-            
 			<form onsubmit="return false;" id="form_libros">
-                
 				<div class="modal-header">
 					<h5 class="modal-title" id="titulo_modal_libros"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -31,7 +43,7 @@
 
                 <div class="modal-body">
 
-                    <input type="hidden" id="id_libros">
+                    <input type="hidden" id="id_libros_editar">
                     
 					<div class="row">
 
