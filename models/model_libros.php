@@ -4,17 +4,6 @@
 
     class LibrosModel extends Conexion {
 
-        /* Obtener libros se consulta a todos los datos de la base de datos */
-
-        static public function obtenerLibrosModel() {
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-            $stmt -> execute();
-            return $stmt -> fetchAll();
-            $stmt = null;
-        }
-
-        /* End of Obtener libros */
-
         /* Agregar libros */
 
         static public function insertarLibrosModel($datos) {
@@ -32,7 +21,7 @@
             $stmt -> bindParam(':precio', $datos['precio'],PDO::PARAM_INT);
             $stmt -> bindParam(':stock', $datos['stock'],PDO::PARAM_INT);
             $stmt -> bindParam(':id_alta',$datos['id_alta'],PDO::PARAM_INT);
-            $stmt -> bindParam(':fecha_alta',$datos['fecha_alta'],PDO::PARAM_STR); 
+            $stmt -> bindParam(':fecha_alta',$datos['fecha_alta'],PDO::PARAM_STR);
 
             if($stmt->execute()) {
                 return $conexion-> lastInsertId();
@@ -49,7 +38,7 @@
 
         static public function editarLibrosModel($datos) {
 
-            $stmt = Conexion::conectar()->prepare("UPDATE libros SET id_categoria=:id_categoria, codigo=:codigo, nombre=:nombre, autor=:autor, editorial=:editorial, descripcion=:descripcion, precio=:precio, stock=:stock, fecha_alta=:fecha_alta WHERE id_libros=:id_libros");
+            $stmt = Conexion::conectar()->prepare("UPDATE libros SET id_categoria=:id_categoria, codigo=:codigo, nombre=:nombre, autor=:autor, editorial=:editorial, descripcion=:descripcion, precio=:precio, stock=:stock, fecha_alta=:fecha_alta WHERE id=:id");
 
             $stmt -> bindParam(':id_categoria', $datos['id_categoria'],PDO::PARAM_INT);
             $stmt -> bindParam(':codigo', $datos['codigo'],PDO::PARAM_STR);
@@ -60,7 +49,7 @@
             $stmt -> bindParam(':precio', $datos['precio'],PDO::PARAM_INT);
             $stmt -> bindParam(':stock', $datos['stock'],PDO::PARAM_INT);
             $stmt -> bindParam(':fecha_alta',$datos['fecha_alta'],PDO::PARAM_STR);
-            $stmt -> bindParam(':id_libros', $datos['id_libros'], PDO::PARAM_INT);
+            $stmt -> bindParam(':id', $datos['id'], PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return 'success';
@@ -78,10 +67,10 @@
 
         static public function editarImagenLibrosModel($datos) {
         
-            $stmt = Conexion::conectar()->prepare("UPDATE libros SET imagen=:imagen WHERE id_libros=:id_libros");
+            $stmt = Conexion::conectar()->prepare("UPDATE libros SET imagen=:imagen WHERE id=:id");
 
             $stmt->bindParam(":imagen", $datos['imagen'], PDO::PARAM_STR);
-            $stmt->bindParam(":id_libros", $datos['id_libros'], PDO::PARAM_INT);
+            $stmt->bindParam(":id", $datos['id'], PDO::PARAM_INT);
 
             if($stmt->execute()){
                 return 'success';
@@ -97,11 +86,11 @@
 
         /* Buscar los datos de un libro en particular a partir de su ID */
 
-        static public function buscarLibrosModel($id_libros) {
+        static public function buscarLibrosModel($id) {
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM libros WHERE  id_libros=:id_libros");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM libros WHERE  id=:id");
 
-            $stmt->bindParam(':id_libros',$id_libros, PDO::PARAM_INT);
+            $stmt->bindParam(':id',$id, PDO::PARAM_INT);
 
             $stmt -> execute();
     
@@ -172,7 +161,7 @@
         //No de enviar nada como parametro
         static public function consultaLibrosModel() {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM libros");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM libros WHERE estado=0");
 			$stmt->execute();
 			return $stmt -> fetchAll();
 

@@ -34,12 +34,12 @@ $(document).on("submit","#form_libros",function() {
 
     var datos = new FormData();
         
-    if(id_libros) datos.append("id_libros",id_libros);
+    if(id_libros) datos.append("id_libros", id_libros);
 
         datos.append("id_categoria", id_categoria);
         
         datos.append("codigo_libros", codigo);
-        datos.append("nombre", nombre);
+        datos.append("nombre_libros", nombre);
         datos.append("autor_libros", autor);
         datos.append("editorial_libros", editorial);
         datos.append("precio_libros", precio);
@@ -113,13 +113,11 @@ $(document).on("change", ".validar00", function () {
 });
 
 /**
- * Listener para mostrar la informacion al editar un libro
- * Se manda a llamar un ajax para obtener la información, 
- * Una vez recibida se muestra en los campos del modal para registrar libros
- * Y al terminar se muestra el modal.
+ * Listener para mostrar la informacion al editar un libro, Se manda a llamar un ajax para obtener la información, 
+ * Una vez recibida se muestra en los campos del modal para registrar libros, Y al terminar se muestra el modal.
  */
 
-$(document).on("click",".editar_libros",function(){
+$(document).on("click",".editar_libros",function() {
     
     var datos = new FormData();
     
@@ -134,23 +132,24 @@ $(document).on("click",".editar_libros",function(){
         processData: false,
         beforeSend:loading(true),
         success:function(respuesta){
-            // console.log(respuesta);
+            //console.log(respuesta);
             if(respuesta=="session_expired"){
                 sesionExpirada();
-            }else{
+            } else {
                 respuesta = JSON.parse(respuesta);
                 $("#titulo_modal_libros").html("Editando libro");
-                $("#id_libros_editar").val(respuesta.id_libros);
+                $("#id_libros").val(respuesta.id);
+                $("#id_categoria").val(respuesta.id_categoria);
                 //$("#codigo_libros").val(respuesta.codigo);
-                $("#codigo_libros").val(respuesta.codigo).removeClass("validarCampo").addClass("validarCampoEditar").attr("id_libros", respuesta.id_libros).change();
+                $("#codigo_libros").val(respuesta.codigo).removeClass("validarCampo").addClass("validarCampoEditar").attr("id_libros", respuesta.id).change();
                 $("#nombre_libros").val(respuesta.nombre);
                 $("#autor_libros").val(respuesta.autor);
                 $("#editorial_libros").val(respuesta.editorial);
                 $("#precio_libros").val(respuesta.precio);
                 $("#stock_libros").val(respuesta.stock);
                 $("#descripcion_libros").val(respuesta.descripcion);
-                // $("#imagen_previsualizar,#imagenCamaraPaciente").attr("src",url+respuesta.imagen);
-                $("#modal_registrar_usuarios").modal("show");
+                $("#imagen_previsualizar").attr("src",url+respuesta.imagen);
+                $("#modal_registrar_libros").modal("show");
             }
             loading(false);
         }

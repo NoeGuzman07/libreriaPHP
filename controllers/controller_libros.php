@@ -8,9 +8,10 @@
         date_default_timezone_set("America/Tijuana");
 
         //Verificacion de ID existente
-        if($datos['id_libros']) {
+        if($datos['id']) {
 
             //Si se encuentra el ID, se realizara cambios del libro en la base de datos
+            $datos['fecha_alta']= date("Y-m-d H:i:s");
             LibrosModel::editarLibrosModel($datos);
         
         } else {
@@ -18,18 +19,18 @@
             //Cuando No se encuentra un ID, se realizara el registro del libro en la base de datos
             $datos['id_alta'] = $_SESSION['id_usuarios'];
             $datos['fecha_alta']= date("Y-m-d H:i:s");
-            $datos['id_libros'] = LibrosModel::insertarLibrosModel($datos);
+            $datos['id'] = LibrosModel::insertarLibrosModel($datos);
         
         }
         
         //Buscamos al libro para obtener el nombre del archivo de la imagen actual
-        $libros = LibrosModel::buscarLibrosModel($datos['id_libros']);
+        $libros = LibrosModel::buscarLibrosModel($datos['id']);
         
         if($datos['imagen']) {
             //Si se encuentra la imagen, verificamos si existe la imagen para poder eliminarla-remplazarla
             if($libros['imagen']!=""&&file_exists("../../".$libros['imagen'])&&$libros['imagen']!="views/assets/img/usuario_default.png") unlink("../../".$libros['imagen']);
             //Procedemos a almacenar la imagen al servidor
-            $nombre_imagen = "imagen_libros_".$datos['id_libros'];
+            $nombre_imagen = "imagen_libros_".$datos['id'];
             $datos['imagen'] = GeneralController::subirImagen($datos['imagen'],"libros",$nombre_imagen);
             //Procedemos al editar la imagen del libro
             LibrosModel::editarImagenLibrosModel($datos);
@@ -40,9 +41,9 @@
     /* Buscar un libro en particular */
     /* Realizamos la busqueda de un libro en particular utilizando su ID */
 
-    static public function buscarLibrosController($id_libros) {
+    static public function buscarLibrosController($id) {
 
-        return json_encode(LibrosModel::buscarLibrosController($id_libros));
+        return json_encode(LibrosModel::buscarLibrosModel($id));
 
     }
     

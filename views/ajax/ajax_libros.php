@@ -28,7 +28,7 @@
 
             //Arreglo: Agregar libros
             $datos = array (
-                "id_libros" => isset($_POST['id_libros']) ? $_POST['id_libros'] : false,
+                "id" => isset($_POST['id_libros']) ? $_POST['id_libros'] : false,
                 "id_categoria"=>$_POST['id_categoria'],
                 "codigo"=>$_POST['codigo_libros'],
                 "nombre"=>$_POST['nombre_libros'],

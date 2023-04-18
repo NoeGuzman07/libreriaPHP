@@ -1,6 +1,7 @@
 <?php
 
     require_once "../../../controllers/controller_libros.php";
+    require_once "../../../controllers/controller_general.php";
     require_once "../../../controllers/controller_template.php";
     require_once "../../../models/model_libros.php";
 
@@ -20,18 +21,27 @@
     
                 $datosJson = '{
                   "data": [';
-    
-                $i = 0;
+                
+                  $i = 0;
+
                 foreach ($libros as $libro) {
-                    
-                    $datosJson .= '[
+                
+                $botones = "<a class='editar_libros' id_libros='".$libro['id']."'><button class='btn btn-icono btn-editar'></button></a>  <a class='eliminarRegistro' tabla='libros' idRegistro='".$libro['id']."'><button class='btn btn-icono btn-eliminar'></button></a>";
+
+                $estado="";
+                
+                $imagen = "<td><img width='60px;' src='".$libro['imagen']."'></td>";
+
+
+                $datosJson .= '[
                         "'.++$i.'",
-                        "'.$libro["id_categoria"].'",
+                        "'.$botones.'",
+                        "'.$estado.'",
+                        "'.$imagen.'",
                         "'.$libro["codigo"].'",
                         "'.$libro["nombre"].'",
                         "'.$libro["autor"].'",
                         "'.$libro["editorial"].'",
-                        "'.$libro["descripcion"].'",
                         "'.$libro["precio"].'",
                         "'.$libro["stock"].'",
                         "'.$libro["fecha_alta"].'"
@@ -40,6 +50,9 @@
                 }
     
                 $datosJson = substr($datosJson, 0, -1);
+
+                $datosJson .= ']
+                }';
     
                 echo $datosJson;
     

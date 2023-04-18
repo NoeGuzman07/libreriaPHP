@@ -11,23 +11,32 @@
 </div>
 <!-- Título del módulo -->
 
+<!-- Tabla de libros -->
 <h6 class="subtitulo">Tabla de libros</h6>
-
-<!-- TABLA: LISTA DE LIBROS REGISTRADOS EN EL SISTEMA -->
-<table id="tabla_libros" class="table table-striped display">
-
-	<!-- CABECERA Y COLUMNAS DE LA TABLA USUARIOS -->
-	<thead>
-		<tr align="center">		
-			<th>#</th>
-			<th>Categoria</th>
-			<th>Codigo</th>
-			<th>Nombre</th>
-			<th>Fecha de alta</th>
-		</tr>
-	</thead>
-    
-</table>
+<div class="caja">
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tabla_libros" class="table w-100" style="text-align: center;">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Botones</th>
+                        <th>Estado</th>
+                        <th>Imagen</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Editorial</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Fecha de alta</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Tabla de libros -->
 
 <!-- Modal para registrar libros -->
 <div class="modal fade" id="modal_registrar_libros" data-backdrop="static" tabindex="-1">
@@ -43,7 +52,7 @@
 
                 <div class="modal-body">
 
-                    <input type="hidden" id="id_libros_editar">
+                    <input type="hidden" id="id_libros">
                     
 					<div class="row">
 
