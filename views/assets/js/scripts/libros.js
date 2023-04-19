@@ -5,7 +5,7 @@ $(document).on("click", "#agregar_libros", function() {
 
     $("#titulo_modal_libros").html("Agregando libro");
     $(".input_libros").val("");
-    $("#codigo_libros").removeClass("validarCampoEditar").addClass("validarCampo").attr("id_libros","").change();
+    $("#codigo_libros").removeClass("validarCampoEditar").addClass("validarCampo").attr("idRegistro","").change();
     $("#nombre_libros").removeClass("validarCampoNombreEditar").addClass("validarCampoNombre").attr("id_libros","").change();
     $("#imagen_previsualizar").attr("src","views/assets/img/usuario_default.png")
     $("#input_imagen,#archivo_cedula_libros").next().html("Seleccionar archivo");
@@ -140,8 +140,7 @@ $(document).on("click",".editar_libros",function() {
                 $("#titulo_modal_libros").html("Editando libro");
                 $("#id_libros").val(respuesta.id);
                 $("#id_categoria").val(respuesta.id_categoria);
-                //$("#codigo_libros").val(respuesta.codigo);
-                $("#codigo_libros").val(respuesta.codigo).removeClass("validarCampo").addClass("validarCampoEditar").attr("id_libros", respuesta.id).change();
+                $("#codigo_libros").val(respuesta.codigo).removeClass("validarCampo").addClass("validarCampoEditar").attr("idRegistro", respuesta.id).change();
                 $("#nombre_libros").val(respuesta.nombre);
                 $("#autor_libros").val(respuesta.autor);
                 $("#editorial_libros").val(respuesta.editorial);

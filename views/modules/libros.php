@@ -52,7 +52,7 @@
 
                 <div class="modal-body">
 
-                    <input type="hidden" id="id_libros">
+                    <input type="hidden" class="input_libros" id="id_libros">
                     
 					<div class="row">
 

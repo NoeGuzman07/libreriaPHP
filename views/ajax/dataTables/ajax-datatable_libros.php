@@ -25,13 +25,15 @@
                   $i = 0;
 
                 foreach ($libros as $libro) {
+                    
+                    
+                $checked=($libro['estado']==0) ? "checked" : "";
                 
                 $botones = "<a class='editar_libros' id_libros='".$libro['id']."'><button class='btn btn-icono btn-editar'></button></a>  <a class='eliminarRegistro' tabla='libros' idRegistro='".$libro['id']."'><button class='btn btn-icono btn-eliminar'></button></a>";
-
-                $estado="";
                 
-                $imagen = "<td><img width='60px;' src='".$libro['imagen']."'></td>";
+                $estado="<div class='custom-control custom-switch'><input type='checkbox' class='custom-control-input cambioEstado' id='switch='".$libro['id']."'' idRegistro='".$libro['id']."' tabla='libros' ".$checked."><label class='custom-control-label' for='switch='".$libro['id']."''></label></div>";
 
+                $imagen = "<td><img width='60px;' src='".$libro['imagen']."'></td>";
 
                 $datosJson .= '[
                         "'.++$i.'",

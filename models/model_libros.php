@@ -158,10 +158,9 @@
 		}
 
         //Modelo: Consulta de todos los libros registrados en el sistema
-        //No de enviar nada como parametro
         static public function consultaLibrosModel() {
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM libros WHERE estado=0");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM libros WHERE estado!=2");
 			$stmt->execute();
 			return $stmt -> fetchAll();
 
