@@ -8,6 +8,7 @@
     class TablaLibros {
 
         /*  TABLA LIBROS  */
+
         public function mostrarTablaLibros() {
 
             date_default_timezone_set("America/Tijuana");
@@ -26,7 +27,6 @@
 
                 foreach ($libros as $libro) {
                     
-                    
                 $checked=($libro['estado']==0) ? "checked" : "";
                 
                 $botones = "<a class='editar_libros' id_libros='".$libro['id']."'><button class='btn btn-icono btn-editar'></button></a>  <a class='eliminarRegistro' tabla='libros' idRegistro='".$libro['id']."'><button class='btn btn-icono btn-eliminar'></button></a>";
@@ -41,6 +41,7 @@
                         "'.$estado.'",
                         "'.$imagen.'",
                         "'.$libro["codigo"].'",
+                        "'.$libro["categoria"].'",
                         "'.$libro["nombre"].'",
                         "'.$libro["autor"].'",
                         "'.$libro["editorial"].'",
@@ -49,7 +50,7 @@
                         "'.$libro["fecha_alta"].'"
                       ],';
     
-                }
+            }
     
                 $datosJson = substr($datosJson, 0, -1);
 
@@ -70,7 +71,11 @@
 
     }
 
-    /*  TABLA LIBROS  */
+        /*  End of TABLA LIBROS  */
+
+    /*  Método para mostrar la tabla de libros */
+
     $mostrarTablaLibros = new TablaLibros();
     $mostrarTablaLibros -> mostrarTablaLibros();
-    /*  TABLA LIBROS  */
+
+    /*  End of Método para mostrar la tabla de libros */

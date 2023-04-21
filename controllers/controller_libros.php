@@ -2,21 +2,22 @@
 
     class LibrosController {
 
-    /* Funcion para validar un Libro y agregarlo a la base de datos */
+    /* Función para validar un Libro y agregarlo a la base de datos */
     static public function registrarLibrosController($datos) {
 
         date_default_timezone_set("America/Tijuana");
 
-        //Verificacion de ID existente
+        //Verificación de ID existente
         if($datos['id']) {
 
-            //Si se encuentra el ID, se realizara cambios del libro en la base de datos
+            //Si se encuentra el ID, se realizará cambios del libro en la base de datos
+            // Y se actualiza la fecha actual
             $datos['fecha_alta']= date("Y-m-d H:i:s");
             LibrosModel::editarLibrosModel($datos);
         
         } else {
         
-            //Cuando No se encuentra un ID, se realizara el registro del libro en la base de datos
+            //Cuando No se encuentra un ID, se realizará el registro del libro en la base de datos
             $datos['id_alta'] = $_SESSION['id_usuarios'];
             $datos['fecha_alta']= date("Y-m-d H:i:s");
             $datos['id'] = LibrosModel::insertarLibrosModel($datos);
@@ -40,54 +41,42 @@
 
     /* Buscar un libro en particular */
     /* Realizamos la busqueda de un libro en particular utilizando su ID */
+    /* Esta función se utiliza en el Ajax de libros al momento de registrar un libro */
 
     static public function buscarLibrosController($id) {
 
         return json_encode(LibrosModel::buscarLibrosModel($id));
 
     }
-    
-    /* Consulta de codigos y de cualquier columna de la tabla libros */
-    //Enviamos a Model como parametros el nombre de la tabla, columna y su valor
-    static public function buscarColumnaLibrosController($item, $valor) {
 
-        $tabla="libros";
-        $respuesta = LibrosModel::buscarColumnaLibrosModel($tabla, $item, $valor);
-        return $respuesta;
-
-    }
-
-    //* Consula de todos los libros registrados en el sistema */
+    /* Consula de Todos los libros registrados en el sistema */
     static public function consultaLibrosController() {
-
         $respuesta = LibrosModel::consultaLibrosModel();
         return $respuesta;
 
     }
 
-    /* Consulta de autores existentes en la tabla libros */
-    static public function buscarAutorLibrosController($item, $valor) {
+    /* Consulta de Autores existentes en la tabla libros */
+    static public function buscarAutorLibrosController() {
 
-        $tabla="libros";
-        $respuesta = LibrosModel::buscarAutorLibrosModel($tabla, $item, $valor);
+        $respuesta = LibrosModel::buscarAutorLibrosModel();
         return $respuesta;
 
     }
 
-    /* Consulta de editoriales en la tabla libros */
-    static public function buscarEditorialLibrosController($item, $valor) {
+    /* Consulta de Editoriales en la tabla libros */
+    static public function buscarEditorialLibrosController() {
 
-        $tabla="libros";
-        $respuesta = LibrosModel::buscarEditorialLibrosModel($tabla, $item, $valor);
+        $respuesta = LibrosModel::buscarEditorialLibrosModel();
         return $respuesta;
 
     }
 
-    /* Consulta de categorias en la tabla categoria */
-    static public function buscarCategoriaController($item, $valor) {
+    /* Consulta de Categorias en la tabla categoría */
+    static public function buscarCategoriaController() {
 
         $tabla="categoria";
-        $respuesta = LibrosModel::buscarCategoriaModel($tabla, $item, $valor);
+        $respuesta = LibrosModel::buscarCategoriaModel();
         return $respuesta;
 
     }

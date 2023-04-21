@@ -13,10 +13,16 @@ $(document).on("click", "#agregar_libros", function() {
 
 });
 
-/* Listener para el submit del form de Agregar libros, verifica los campos para enviar la infromacion mediante AJAX */
+/* End of Listener para el boton de Agregar libros */
+
+/* Campos select editables: Autor y Editorial */
 
 $('#autor_libros').editableSelect();
 $('#editorial_libros').editableSelect();
+
+/* End of Campos select editables: Autor y Editorial */
+
+/* Listener para el submit del form de Agregar libros, verifica los campos para enviar la infromacion mediante AJAX */
 
 $(document).on("submit","#form_libros",function() {
 
@@ -55,7 +61,7 @@ $(document).on("submit","#form_libros",function() {
             cache: false,
             contentType: false,
             processData: false,
-            //manda a llamar loading y desactiva inputs submit
+            //Manda a llamar loading y desactiva inputs submit
             success:function(respuesta) {
                 if(respuesta=="session_expired") {
                     sesionExpirada();
@@ -70,6 +76,8 @@ $(document).on("submit","#form_libros",function() {
 
 });
 
+/* End of Listener para el submit del form de Agregar libros */
+
 /* Validar imagenes */
 
 $(document).on('change', '.validarImagen', function() {
@@ -78,6 +86,8 @@ $(document).on('change', '.validarImagen', function() {
 		swal("¡Error!", "¡Solo se permiten archivos en formato JPG y PNG!", "error");
     }
 });
+
+/* End of Validar imagenes */
 
 /* Validar previsualizar imagenes */
 
@@ -94,6 +104,8 @@ $(document).on('change', '.imagenPrevisualizar', function(){
 	}
 });
 
+/* End of Validar previsualizar imagenes */
+
 /* Validar 0 en el campo de precios de libros */
 
 $(document).on("change", ".validar0", function () {
@@ -102,6 +114,8 @@ $(document).on("change", ".validar0", function () {
       $("#precio_libros").val("");
 	}
 });
+
+/* End of Validar 0 en el campo de precios de libros */
 
 /* Validar 0 en el campo del Stock actual de libros */
 
@@ -112,10 +126,12 @@ $(document).on("change", ".validar00", function () {
 	}
 });
 
-/**
- * Listener para mostrar la informacion al editar un libro, Se manda a llamar un ajax para obtener la información, 
+/* End of Validar 0 en el campo del Stock actual de libros */
+
+/* Listener para mostrar la informacion al editar un libro
+ * Se manda a llamar un ajax para obtener la información.
  * Una vez recibida se muestra en los campos del modal para registrar libros, Y al terminar se muestra el modal.
- */
+*/
 
 $(document).on("click",".editar_libros",function() {
     
@@ -157,7 +173,7 @@ $(document).on("click",".editar_libros",function() {
 
 /* Listener para valiidar el campo de nombre de libros
  * El nombre del libro no puede repetirse dentro de la misma categoria
- */
+*/
 
 $(document).on("change", ".validarCampoNombre", function () {
 
@@ -205,8 +221,9 @@ $(document).on("change", ".validarCampoNombre", function () {
     });
 });
 
-//Script para mostrar tabla de libros, esta debe cargarse desde JSON
-//mediante una respuesta desde AJAX
+/* End of Listener para valiidar el campo de nombre de libros */
+
+/* Script para mostrar tabla de libros, esta debe cargarse desde JSON mediante una respuesta desde AJAX */
 
 $(document).ready(function() {
     cargarTablaLibros();
@@ -258,3 +275,5 @@ function cargarTablaLibros() {
     
     }
 }
+
+/* End of Script para mostrar tabla de libros */

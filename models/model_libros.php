@@ -87,44 +87,20 @@
         /* Buscar los datos de un libro en particular a partir de su ID */
 
         static public function buscarLibrosModel($id) {
-
             $stmt = Conexion::conectar()->prepare("SELECT * FROM libros WHERE  id=:id");
-
             $stmt->bindParam(':id',$id, PDO::PARAM_INT);
-
             $stmt -> execute();
-    
             return $stmt -> fetch();
-    
             $stmt = null;
-
         }
 
         /* End of Buscar los datos de un libros en particular a partir de su ID */
 
-        //Consulta de cualquier columna de la tabla libros
-		static public function buscarColumnaLibrosModel($tabla, $item, $valor) {
+        /* Modelo: Consulta de autores, aquí se utiliza la función Distinct para evitar mostrar autores repetidos */
+        
+		static public function buscarAutorLibrosModel() {
 
-			if($item == null && $valor == null) {
-            	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-				$stmt->execute();
-				return $stmt -> fetchAll();
-			} else {
-            	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
-				$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
-				$stmt->execute();
-				return $stmt -> fetch();
-			}
-
-			//$stmt->close();
-			//$stmt = null;
-
-		}
-
-        //Modelo: Consulta de autores, aqui se utiliza la funcion Distinct para evitar mostrar autores repetidos
-		static public function buscarAutorLibrosModel($tabla, $item, $valor) {
-
-		    $stmt = Conexion::conectar()->prepare("SELECT DISTINCT autor FROM $tabla");
+		    $stmt = Conexion::conectar()->prepare("SELECT DISTINCT autor FROM libros");
 			$stmt->execute();
 			return $stmt -> fetchAll();
 
@@ -133,10 +109,12 @@
 
 		}
 
-        //Modelo: Consulta de Editoriales, aqui se utiliza la funcion Distinct para evitar mostrar autores repetidos
-		static public function buscarEditorialLibrosModel($tabla, $item, $valor) {
+        /* End of Modelo: Consulta de autores utilizando la función Distinct para evitar mostrar autores repetidos */
 
-		    $stmt = Conexion::conectar()->prepare("SELECT DISTINCT editorial FROM $tabla");
+        /* Modelo: Consulta de Editoriales, aquí se utiliza la función Distinct para evitar mostrar autores repetidos */
+		static public function buscarEditorialLibrosModel() {
+
+		    $stmt = Conexion::conectar()->prepare("SELECT DISTINCT editorial FROM libros");
 			$stmt->execute();
 			return $stmt -> fetchAll();
 
@@ -144,11 +122,13 @@
 			//$stmt = null;
 
 		}
+
+        /* End of Modelo: Consulta de Editoriales, utilizando la función Distinct para evitar mostrar autores repetidos */
 
         //Modelo: Consulta de Categorias, aqui se utiliza la Tabla Categorias y la función Distinct para evitar mostrar autores repetidos
-		static public function buscarCategoriaModel($tabla, $item, $valor) {
+		static public function buscarCategoriaModel() {
 
-		    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		    $stmt = Conexion::conectar()->prepare("SELECT * FROM categoria");
 			$stmt->execute();
 			return $stmt -> fetchAll();
 
@@ -159,9 +139,22 @@
 
         //Modelo: Consulta de todos los libros registrados en el sistema
         static public function consultaLibrosModel() {
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM libros WHERE estado!=2");
-			$stmt->execute();
+            $stmt = Conexion::conectar()->prepare("SELECT 
+            libros.id, 
+            libros.estado, 
+            libros.imagen, 
+            libros.codigo,
+            categoria.nombre AS categoria,
+            libros.nombre,
+            libros.autor,
+            libros.editorial,
+            libros.precio,
+            libros.stock,
+            libros.fecha_alta 
+            FROM libros 
+            INNER JOIN categoria ON libros.id_categoria = categoria.id_categoria 
+            WHERE libros.estado!=2");
+            $stmt->execute();
 			return $stmt -> fetchAll();
 
 			//$stmt->close();

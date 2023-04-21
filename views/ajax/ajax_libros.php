@@ -7,7 +7,7 @@
 
     class Libros {
 
-        //Funcion para llamar a los metodos definidos en controller libros
+        //Función para llamar a los métodos definidos en Controller Libros
         public $datos;
         public $controller;
         public function funcionLibros() {
@@ -22,8 +22,10 @@
 
     session_start();
 
+    //Condición para saber si el usuario inició sesión en el sistema
     if(isset($_SESSION['iniciarSesion']) && $_SESSION['iniciarSesion'] == 'ok') {
         
+        //Condición para saber si el nombre de libro si está definida o no
         if(isset($_POST['nombre_libros'])) {
 
             //Arreglo: Agregar libros
@@ -40,10 +42,11 @@
                 "imagen"=> isset($_FILES["imagen_libros"]) ? $_FILES["imagen_libros"] : false,
             );
 
+            //La información se envía a hacia el la función que se encuentran en Libros Controller
             $funcion = "registrarLibrosController";
 
         } else if(isset($_POST['id_libros_buscar'])) {
-            //Instruccion para buscar un libro en particular, esto a partir de su ID
+            //Instrucción para buscar un libro en particular, esto a partir de su ID
             $datos = $_POST['id_libros_buscar'];
             $funcion = "buscarLibrosController";
         } else {

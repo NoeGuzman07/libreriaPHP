@@ -1,7 +1,7 @@
 <?php
-	$librosAutor = LibrosController::buscarAutorLibrosController(null, null);
-    $librosEditorial = LibrosController::buscarEditorialLibrosController(null, null);
-    $categoria = LibrosController::buscarCategoriaController(null, null);
+	$librosAutor = LibrosController::buscarAutorLibrosController();
+    $librosEditorial = LibrosController::buscarEditorialLibrosController();
+    $categoria = LibrosController::buscarCategoriaController();
 ?>
 
 <!-- Título del módulo -->
@@ -9,7 +9,7 @@
     <h1 class="titulo-modulo">Libros</h1>
     <button class="btn btn-agregar con-icono" id="agregar_libros">Agregar</button>
 </div>
-<!-- Título del módulo -->
+<!-- End of Título del módulo -->
 
 <!-- Tabla de libros -->
 <h6 class="subtitulo">Tabla de libros</h6>
@@ -24,6 +24,7 @@
                         <th>Estado</th>
                         <th>Imagen</th>
                         <th>Código</th>
+                        <th>Categoría</th>
                         <th>Nombre</th>
                         <th>Autor</th>
                         <th>Editorial</th>
@@ -36,7 +37,7 @@
         </div>
     </div>
 </div>
-<!-- Tabla de libros -->
+<!-- End of Tabla de libros -->
 
 <!-- Modal para registrar libros -->
 <div class="modal fade" id="modal_registrar_libros" data-backdrop="static" tabindex="-1">
@@ -71,7 +72,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">Código:</label>
-                                <input type="text" class="form-control input_libros validarCampo" id="codigo_libros" tabla="libros" columna="codigo" mensaje="El codigo del libro ya se encuentra registrado" required>
+                                <input type="text" class="form-control input_libros validarCampo" id="codigo_libros" tabla="libros" columna="codigo" mensaje="El campo ya se encuentra registrado" required>
                                 <div class="invalid-feedback" style="display: none;"></div>
                             </div>
                         </div>
@@ -123,7 +124,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Stock Actual (opcional):</label>
-                                <input type="number" class="form-control input_libros validar00" id="stock_libros">
+                                <input type="number" class="form-control input_libros validar0" id="stock_libros">
                             </div>                            
                         </div>
                         
@@ -177,4 +178,4 @@
 
 </div>
 
-<!-- Modal para registrar libros -->
+<!-- End of Modal para registrar libros -->
